@@ -1,9 +1,9 @@
 # coding=UTF-8
 '''
 Author: xiaoyichao
-LastEditors: xiaoyichao
+LastEditors: Please set LastEditors
 Date: 2021-03-25 22:02:23
-LastEditTime: 2021-03-25 22:29:37
+LastEditTime: 2022-03-15 09:18:48
 Description: https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/description/
 '''
 
@@ -16,18 +16,16 @@ class Solution():
     空间复杂度O(1)]
     """    
     def judgeSquareSum(self, c: int) -> bool:
-        if c < 0:
-            return False
         i = 0
-        j = int(math.sqrt(c))
-        while i <= j:
-            sum = i ** 2 + j ** 2
-            if sum == c:
+        j = int(pow(c, 0.5))
+        while i<=j:
+            sum_num = i**2 + j**2
+            if sum_num == c:
                 return True
-            elif sum < c:
-                i += 1
+            elif sum_num < c:
+                i+=1
             else:
-                j -= 1
+                j-=1
         return False
 
 
