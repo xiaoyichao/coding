@@ -1,11 +1,13 @@
 # coding=UTF-8
 '''
 Author: xiaoyichao
-LastEditors: xiaoyichao
+LastEditors: Please set LastEditors
 Date: 2021-03-30 21:53:32
-LastEditTime: 2021-04-12 23:03:44
+LastEditTime: 2022-05-11 11:31:20
 Description: https://leetcode-cn.com/problems/reverse-vowels-of-a-string/description/
 '''
+from typing import List
+
 class Solution:
     def reverseVowels(self, s: str) -> str:
         i = 0

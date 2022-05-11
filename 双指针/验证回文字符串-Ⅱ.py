@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: Please set LastEditors
 Date: 2021-04-12 23:07:17
-LastEditTime: 2022-03-18 11:51:06
+LastEditTime: 2022-05-11 09:05:48
 Description: https://leetcode-cn.com/problems/valid-palindrome-ii/description/
 '''
 
@@ -31,6 +31,4 @@ class Solution:
 
 
 s = Solution()
-# 这个例子有问题
-print(s.validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga"))
-# print(s.validPalindrome("abcbfa"))
+print(s.validPalindrome("abcbfa"))
