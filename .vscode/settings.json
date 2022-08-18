@@ -1,3 +1,118 @@
+
 {
-    "git.ignoreLimitWarning": true
+
+    "fileheader.configObj": {
+
+        "createFileTime": true,
+        "language": {
+            "languagetest": {
+                "head": "/$$",
+                "middle": " $ @",
+                "end": " $/"
+            }
+        },
+        "autoAdd": true,
+        "autoAddLine": 100,
+        "autoAlready": true,
+        "annotationStr": {
+            "head": "/*",
+            "middle": " * @",
+            "end": " */",
+            "use": false
+        },
+        "headInsertLine": {
+            "py": 2,
+            "sh": 2
+        },
+        "beforeAnnotation": {
+            "py": "# coding=UTF-8"
+        },
+        "afterAnnotation": {
+            "文件后缀": "该文件后缀的头部注释之后添加某些内容"
+        },
+        "specialOptions": {
+            "特殊字段": "自定义比如LastEditTime/LastEditors"
+        },
+        "switch": {
+            "newlineAddAnnotation": true
+        },
+        "supportAutoLanguage": [],
+        "prohibitAutoAdd": [
+            "json"
+        ],
+        "folderBlacklist": [
+            "node_modules",
+            "文件夹禁止自动添加头部注释"
+        ],
+        "prohibitItemAutoAdd": [
+            "项目的全称, 整个项目禁止自动添加头部注释, 可以使用快捷键添加"
+        ],
+        "moveCursor": true,
+        "dateFormat": "YYYY-MM-DD HH:mm:ss",
+        "atSymbol": [
+            "@",
+            "@"
+        ],
+        "atSymbolObj": {
+            "文件后缀": [
+                "头部注释@符号",
+                "函数注释@符号"
+            ]
+        },
+        "colon": [
+            ": ",
+            ": "
+        ],
+        "colonObj": {
+            "文件后缀": [
+                "头部注释冒号",
+                "函数注释冒号"
+            ]
+        },
+        "filePathColon": "路径分隔符替换",
+        "showErrorMessage": false,
+        "writeLog": false,
+        "wideSame": false,
+        "wideNum": 13,
+        "functionWideNum": 0,
+        "CheckFileChange": false,
+        "createHeader": true,
+        "useWorker": false,
+        "designAddHead": false,
+        "headDesignName": "random",
+        "headDesign": false,
+        "cursorModeInternalAll": {},
+        "openFunctionParamsCheck": true,
+        "functionParamsShape": [
+            "{",
+            "}"
+        ],
+        "functionBlankSpaceAll": {},
+        "functionTypeSymbol": "*",
+        "typeParamOrder": "type param",
+        "customHasHeadEnd": {},
+        "throttleTime": 60000
+    },
+    "fileheader.customMade": {
+        "Author": "xiaoyichao",
+        "LastEditors": "xiaoyichao",
+        "Date": "2019-02-22 14:28:48",
+        "LastEditTime": "Do not edit",
+        "Description": ""
+    },
+    "fileheader.cursorMode": {
+        "Author": "xiaoyichao",
+        "param": "",
+        "Description": ""
+    },
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./bert_regress",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "python.pythonPath": "/root/anaconda3/envs/py38/bin/python"
 }
