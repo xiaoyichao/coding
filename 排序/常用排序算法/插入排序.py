@@ -19,16 +19,18 @@ https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/ge-chong-p
 '''
 # 插入排序
 def insert_sort(alist):
-    n = len(alist)
-    for i in range(1,n):
-        while (i>0):
+    #  对比当前数字和已经排序的数据，判断需要插入到哪个位置。
+    len_alist = len(alist)
+    for i in range(1, len_alist):
+        while i>0:
             if alist[i] < alist[i-1]:
-                alist[i], alist[i-1] = alist[i-1], alist[i]
-                i -= 1
+               alist[i],  alist[i-1] = alist[i-1], alist[i]
+               i-=1
             else:
                 break
     return alist
 
+print(insert_sort([1,4,2,5,7,2,6,8,29]))
 
 # 希尔排序
 def shell_sort(alist):

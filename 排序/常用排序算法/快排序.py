@@ -21,7 +21,7 @@ def quick_sort(alist, start, end):
     high = end
 
     while low < high:
-        while low<high and alist[high] >= mid_value:
+        while low < high and alist[high] >= mid_value:
             high -= 1
         alist[low] = alist[high]
 
