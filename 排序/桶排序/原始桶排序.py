@@ -1,5 +1,4 @@
 
-
 '''
 桶排序适用的场景并不多，用得多一点的是基于桶排序思想的计数排序和基数排序。
 
@@ -21,13 +20,14 @@
 
 from typing import List
 import math
+
 def bucket_sort(arr:List[int]):
     """桶排序"""
     min_num = min(arr)
     max_num = max(arr)
     # 桶的大小
-    # bucket_range = (max_num-min_num) // len(arr) + 1
-    bucket_range = math.ceil((max_num-min_num) / len(arr)) # 向上取整
+    bucket_range = (max_num-min_num) // len(arr) + 1 # 取整后加一，防止出现0
+    # bucket_range = math.ceil((max_num-min_num) / len(arr)) + 1 # 向上取整
     # 桶数组
     count_list = [ [] for i in range(len(arr) + 1)]
     # 向桶数组填数
