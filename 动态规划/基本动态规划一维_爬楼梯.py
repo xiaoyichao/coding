@@ -28,21 +28,16 @@ https://leetcode.cn/problems/climbing-stairs/solution/zhi-xin-hua-shi-pa-lou-ti-
 class Solution:
     # f(n)只依赖于f(n-1)和f(n-2)，只需要两项就足够了
     def climbStairs(self, n: int) -> int:
-        a=1
-        b=1
-        for i in range(2,n+1):
-            tmp = a
-            a = b
-            b = tmp+b
-            # a, b = b, a + b
+        a = 1
+        b = 1
+        for i in range(2, n+1):
+            # tmp = a
+            # a = b
+            # b = tmp+b
+            a, b = b, a + b
         return b
-        
-
-
 
 
 if __name__ == '__main__':
-    S=  Solution()
+    S = Solution()
     print(S.climbStairs(3))
-
-
