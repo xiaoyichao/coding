@@ -15,19 +15,17 @@ https://leetcode.cn/problems/climbing-stairs/
 https://leetcode.cn/problems/climbing-stairs/solution/zhi-xin-hua-shi-pa-lou-ti-zhi-cong-bao-l-lo1t/
 '''
 
-# class Solution:
-#     def climbStairs(self, n: int) -> int:
-#         dp = [0]*(n+1)
-#         dp[0]=1
-#         dp[1]=1
-#         for i in range(2,n+1):
-#             dp[i] = dp[i-1]+dp[i-2]
-#         return dp[-1]
-
-
 class Solution:
+    def climbStairs(self, n: int) -> int: #  动态规划+缓存
+        dp = [0]*(n+1) # 构造缓存list , 第0个台阶的情况要考虑，所以是n+1个
+        dp[0]=1
+        dp[1]=1
+        for i in range(2,n+1):
+            dp[i] = dp[i-1]+dp[i-2] # 记录结果，从第 i-1 阶的方法数迈一步 或者 走到第 i-2 阶的方法数迈两步 即可到第 i 阶， 所以走到第 i 阶的 方法数是这两个情况的加和。
+        return dp[-1]
+
     # f(n)只依赖于f(n-1)和f(n-2)，只需要两项就足够了
-    def climbStairs(self, n: int) -> int:
+    def climbStairs_1(self, n: int) -> int: # 动态规划+两位缓存
         a = 1
         b = 1
         for i in range(2, n+1):

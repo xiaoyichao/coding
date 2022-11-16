@@ -13,10 +13,13 @@ class Solution:
     def numSquares(self, n: int) -> int:
         dp = [0]*(n+1)    
         for i in range(1, n+1):
-            dp[i] = i
-            for j in range(1,int(math.sqrt(i))+1):
-                dp[i] = min(dp[i], dp[i-j*j] + 1)
+            dp[i] = i  # 最坏的结果就是全是1的平方构成，i等于几，就是几个完全平方数构成
+            max_range = int(math.sqrt(i))
+            for j in range(1,max_range+1):
+                max_dp = dp[i]
+                tmp_dp = dp[i-j*j]
+                dp[i] = min(max_dp, tmp_dp + 1)  # 穷举 1 到 int(math.sqrt(i)) 的情况 ，有点递归的意思，通过记忆化等方法弄掉重复计算
         return dp[-1]
 s = Solution()
-res = s.numSquares(10)
+res = s.numSquares(12)
 print(res)

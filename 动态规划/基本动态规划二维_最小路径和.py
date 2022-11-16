@@ -14,35 +14,52 @@ https://leetcode-cn.com/problems/minimum-path-sum/
 
 from typing import List
 
+
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         if not grid or not grid[0]:
             return 0
-        
+
         rows, columns = len(grid), len(grid[0])
-        dp = [[0] * columns for _ in range(rows)]
+        dp = [[0] * columns for _ in range(rows)]  # 构造缓存
+        # dp = [[0] * columns] * rows  这句有问题
+        dp[0][0] = grid[0][0]  # 初始化左上角数据
+        # 一共三个情况
+        for i in range(1, rows):  # 第一列的数据，只能从第一列的左侧往右移动
+            dp[i][0] = dp[i - 1][0] + grid[i][0]
+        for j in range(1, columns):  # 第一行的数据，只能在第一行从上往下移动
+            dp[0][j] = dp[0][j - 1] + grid[0][j]
+        for i in range(1, rows):  # 不是第一行也不是第一列的数据，从左侧或者上侧移动而来
+            for j in range(1, columns):
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+
+        return dp[-1][-1]
+
+    def minPathSum_1(self, grid: List[List[int]]) -> int:
+        rows = len(grid)
+        columns = len(grid[0])
+        dp = [[0] * rows] * columns
         dp[0][0] = grid[0][0]
         for i in range(1, rows):
-            dp[i][0] = dp[i - 1][0] + grid[i][0]
+            dp[i][0] = dp[i-1][0] + grid[i][0]
         for j in range(1, columns):
-            dp[0][j] = dp[0][j - 1] + grid[0][j]
+            dp[0][j] = dp[0][j-1] + grid[0][j]
         for i in range(1, rows):
             for j in range(1, columns):
                 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
-        
-        return dp[rows - 1][columns - 1]
+        return dp[-1][-1]
 
 
 # 空间复杂度可以优化，例如每次只存储上一行的dp 值，则可以将空间复杂度优化到 O(n)
-class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if i == j == 0: continue
-                elif i == 0:  grid[i][j] = grid[i][j - 1] + grid[i][j]
-                elif j == 0:  grid[i][j] = grid[i - 1][j] + grid[i][j]
-                else: grid[i][j] = min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j]
-        return grid[-1][-1]
+# class Solution:
+#     def minPathSum(self, grid: List[List[int]]) -> int:
+#         for i in range(len(grid)):
+#             for j in range(len(grid[0])):
+#                 if i == j == 0: continue
+#                 elif i == 0:  grid[i][j] = grid[i][j - 1] + grid[i][j]
+#                 elif j == 0:  grid[i][j] = grid[i - 1][j] + grid[i][j]
+#                 else: grid[i][j] = min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j]
+#         return grid[-1][-1]
 
 
 
