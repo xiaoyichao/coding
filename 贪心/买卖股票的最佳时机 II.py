@@ -13,6 +13,10 @@ Description: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii
 
 
 贪心或者动态规划，都可以
+
+
+这个是区间问题
+
 '''
 from typing import List
 

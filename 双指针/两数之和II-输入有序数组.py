@@ -10,6 +10,7 @@ Description: https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/d
 
 class Solution:
     """
+    方向相反的双指针
     时间复杂度：O(n)，其中 n是数组的长度。两个指针移动的总次数最多为 n 次。
 
     空间复杂度：O(1)

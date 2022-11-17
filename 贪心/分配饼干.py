@@ -5,6 +5,7 @@ LastEditors: Please set LastEditors
 Date: 2022-07-21 21:47:13
 LastEditTime: 2022-07-21 21:49:01
 Description: https://leetcode.cn/problems/assign-cookies/submissions/
+这是一个分配问题
 '''
 
 from typing import List
@@ -24,3 +25,5 @@ class Solution():
             else:
                 j += 1
         return i
+
+
