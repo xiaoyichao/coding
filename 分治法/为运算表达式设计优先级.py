@@ -1,18 +1,24 @@
 # coding=UTF-8
+# coding=UTF-8
+'''
+Author: xiaoyichao
+LastEditors: xiaoyichao
+Date: 2022-11-23 14:25:11
+LastEditTime: 2022-11-23 14:25:11
+Description: 
+'''
 '''
 给你一个由数字和运算符组成的字符串 expression ，按不同优先级组合数字和运算符，计算并返回所有可能组合的结果。你可以 按任意顺序 返回答案。
 
 生成的测试用例满足其对应输出值符合 32 位整数范围，不同结果的数量不超过 104 。
-
 
 1 <= expression.length <= 20
 expression 由数字和算符 '+'、'-' 和 '*' 组成。
 输入表达式中的所有整数值在范围 [0, 99] 
 
 
-来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/different-ways-to-add-parentheses
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
 '''
 
 from typing import List

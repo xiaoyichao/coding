@@ -1,9 +1,9 @@
 # coding=UTF-8
 '''
 Author: 
-LastEditors: 
+LastEditors: xiaoyichao
 Date: 2022-08-15 22:02:02
-LastEditTime: 2022-08-15 22:02:02
+LastEditTime: 2022-11-23 15:19:53
 Description: 
 
 插入排序
@@ -29,6 +29,19 @@ def insert_sort(alist):
             else:
                 break
     return alist
+
+def insert_sort(alist):
+    len_alist = len(alist)
+    for i  in range(1,len_alist-1):
+        while i >0:
+            if alist[i] < alist[i-1]:
+                alist[i], alist[i-1] = alist[i-1], alist[i]
+                i-=1
+            else:
+                break
+        
+    return alist
+
 
 print(insert_sort([1,4,2,5,7,2,6,8,29]))
 
