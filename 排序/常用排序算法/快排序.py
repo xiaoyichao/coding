@@ -3,14 +3,12 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-08-15 22:03:53
-LastEditTime: 2022-12-04 22:12:20
+LastEditTime: 2022-12-04 22:44:14
 Description:
 
-快排的思想是，每次把第一个值作为mid_value放到数组的中间，使得mid_value左边的数都比它小，右边的数都比它大。
-那么，现在可以返回mid_value的下标p，比较k（k = len(nums) - k)和p的大小，若k<p,则要找的这个数在nums[:p-1]里，若k>p, 则要找的这个数在nums[p+1:]里。
+https://blog.csdn.net/weixin_43250623/article/details/88931925
 
-https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/ge-chong-pai-xu-suan-fa-tu-xie-zong-jie-by-ke-ai-x/
-
+快排序的思想直接看链接
 '''
 
 
@@ -27,7 +25,7 @@ def quick_sort(alist, start, end):
             high -= 1
         alist[low] = alist[high]  # 走到此位置时high指向一个比基准元素小的元素,将high指向的元素放到low的位置上,此时high指向的位置空着,接下来移动low找到符合条件的元素放在此处
         # 如果low与high未重合，low指向的元素比基准元素小，则low向右移动
-        while low < high and alist[low] < mid:
+        while low < high and alist[low] <= mid:
             low += 1
         alist[high] = alist[low]  # 此时low指向一个比基准元素大的元素,将low指向的元素放到high空着的位置上,此时low指向的位置空着,之后进行下一次循环,将high找到符合条件的元素填到此处
 
@@ -39,10 +37,31 @@ def quick_sort(alist, start, end):
     quick_sort(alist, low + 1, end)  # low+1 : 原基准元素靠右一位  end: 最后
 
 
+def quick_sort_1(alist, start, end):
+    if start >= end:
+        return
+    middle = start
+    low = start
+    high = end
+    while low < high:
+        while low < high and alist[high] >= alist[middle]:
+            high -= 1
+        alist[low] = alist[high]
+        while low < high and alist[low] <= alist[middle]:
+            low += 1
+        alist[high] = alist[low]
+    alist[low] = alist[middle]
+    quick_sort(alist, start, low-1)
+    quick_sort(alist, low+1, end)
+
+
 
 if __name__ == '__main__':
-    alist = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    alist = [54, 54, 93, 66, 66, 31, 44, 55, 55]
     quick_sort(alist, 0, len(alist) - 1)
+    print(alist)
+    alist = [54, 54, 93, 66, 66, 31, 44, 55, 55]
+    quick_sort_1(alist, 0, len(alist)-1)
     print(alist)
 
 
