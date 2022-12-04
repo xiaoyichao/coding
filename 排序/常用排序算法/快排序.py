@@ -3,12 +3,21 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-08-15 22:03:53
-LastEditTime: 2022-12-04 22:44:14
+LastEditTime: 2022-12-04 22:56:54
 Description:
 
 https://blog.csdn.net/weixin_43250623/article/details/88931925
 
-快排序的思想直接看链接
+快速排序算法其实很简单，采用分治策略。步骤如下：
+
+选取一个基准元素（pivot）
+比pivot小的放到pivot左边，比pivot大的放到pivot右边
+对pivot左边的序列和右边的序列分别递归的执行步骤1和步骤2
+
+快速排序也是用到了分治思想和递归实现方式，这一点跟归并排序是一样的，但是快速排序的实现跟归并是完全不一样的。
+归并排序是先分解再合并，从下到上解决问题。
+快速排序是从上到下进行分区实现排序。
+
 '''
 
 
