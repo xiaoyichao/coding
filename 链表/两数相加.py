@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-11-27 22:00:48
-LastEditTime: 2022-11-27 22:00:48
+LastEditTime: 2022-12-13 15:17:01
 Description: 
 https://leetcode.cn/problems/add-two-numbers/
 
@@ -13,6 +13,8 @@ https://leetcode.cn/problems/add-two-numbers/
 '''
 
 # Definition for singly-linked list.
+from typing import Optional
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -23,8 +25,7 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         # 初始化链表
         head = tree = ListNode()
-
-        val = tmp = 0
+        val = tmp = 0  # tmp表示的下一位，val 表示的当前位
         # 当三者有一个不为空时继续循环
         while tmp or l1 or l2:
             val = tmp
@@ -43,5 +44,21 @@ class Solution:
             tree = tree.next
 
         return head.next
-        
 
+    def addTwoNumbers_1(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        head = tree = ListNode()
+        val = tmp = 0
+        while tmp or l1 or l2:
+            val = tmp
+            if l1:
+                val = l1.val + val
+                l1 = l1.next
+            if l2:
+                val = l2.val + val
+                l2 = l2.next
+            tmp = val//10
+            val = val % 10
+
+            tree.next = ListNode(val)
+            tree = tree.next
+        return head.next

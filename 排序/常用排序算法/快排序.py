@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-08-15 22:03:53
-LastEditTime: 2022-12-04 22:56:54
+LastEditTime: 2022-12-13 13:57:36
 Description:
 
 https://blog.csdn.net/weixin_43250623/article/details/88931925
@@ -60,9 +60,26 @@ def quick_sort_1(alist, start, end):
             low += 1
         alist[high] = alist[low]
     alist[low] = alist[middle]
-    quick_sort(alist, start, low-1)
-    quick_sort(alist, low+1, end)
+    quick_sort_1(alist, start, low-1)
+    quick_sort_1(alist, low+1, end)
 
+
+def quick_sort_2(alist, start, end):
+    if start >= end:
+        return
+    middle = start
+    low = start
+    high = end
+    while low < high:
+        while low < high and alist[high] >= alist[middle]:
+            high -= 1
+        alist[low] = alist[high]
+        while low < high and alist[low] <= alist[middle]:
+            low += 1
+        alist[high] = alist[low]
+    alist[low] = alist[middle]
+    quick_sort_2(alist, low+1, end)
+    quick_sort_2(alist, start, low-1)
 
 
 if __name__ == '__main__':
