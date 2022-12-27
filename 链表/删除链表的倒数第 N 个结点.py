@@ -3,11 +3,13 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-12-26 16:18:59
-LastEditTime: 2022-12-26 16:54:45
+LastEditTime: 2022-12-27 17:55:19
 Description: 
 https://leetcode.cn/problems/remove-nth-node-from-end-of-list/
+https://leetcode.cn/problems/remove-nth-node-from-end-of-list/solution/shan-chu-lian-biao-de-dao-shu-di-nge-jie-dian-b-61/
 
 '''
+from typing import Optional
 
 # Definition for singly-linked list.
 class ListNode:
@@ -18,17 +20,14 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(-1)
         dummy.next = head
-        x = self.getKthFromEnd(head, n)
-        x.next = x.next.next
-        return dummy.next
-
-
-    def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:  # 一次遍历，实际是两次遍历在一次中实现了
         p1 = head
-        for i in range(k):
+        for i in range(n):
             p1 = p1.next
-        p2 = head
+        p2 = dummy
         while p1:
             p1 = p1.next
             p2 = p2.next
-        return p2
+        p2.next = p2.next.next
+        return dummy.next
+
+
