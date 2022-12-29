@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-12-28 21:34:11
-LastEditTime: 2022-12-28 21:34:12
+LastEditTime: 2022-12-28 21:36:05
 Description: https://leetcode.cn/problems/remove-duplicates-from-sorted-list/
 '''
 # Definition for singly-linked list.
@@ -13,9 +13,9 @@ Description: https://leetcode.cn/problems/remove-duplicates-from-sorted-list/
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None: return None
+        # if head is None: return None
         slow = head
-        fast = head.next
+        fast = head
         while fast:
             if fast.val == slow.val:
                 slow.next = fast.next
