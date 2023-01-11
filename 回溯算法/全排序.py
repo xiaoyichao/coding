@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-10 23:28:04
-LastEditTime: 2023-01-11 13:40:51
+LastEditTime: 2023-01-11 17:49:31
 Description: https://leetcode.cn/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/
 '''
 
@@ -35,9 +35,9 @@ class Solution:
     def permute(self, nums):   
         res = [] # 结果
         def backtrack(nums, track, used):
-            # track 选择列表
-            # used 路径
-            if not nums:  # 触发结束条件
+            # track 【选择列表】，表示当前可以做的选择
+            # used【路径】，记录做过的选择
+            if  len(nums)==0:  # 触发结束条件， 【结束条件】就是遍历到树的底层叶子节点，也就是【选择列表】为空的时候
                 res.append(used)
             for i in range(len(nums)):
                 # 做选择
@@ -45,7 +45,7 @@ class Solution:
                 # 进入下一层决策树
                 backtrack(nums[:i] + nums[i + 1:], track, used + [nums[i]])
                 # 取消选择
-                track.pop()
+                track.pop() # 返回上一层决策树
         backtrack(nums, [], [])
         return res
 
