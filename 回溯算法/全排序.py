@@ -3,10 +3,11 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-10 23:28:04
-LastEditTime: 2023-01-11 17:49:31
+LastEditTime: 2023-01-12 17:51:29
 Description: https://leetcode.cn/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/
 '''
 
+# 官方解法
 class Solution:
     def permute(self, nums):
         """
@@ -31,6 +32,7 @@ class Solution:
         backtrack()
         return res
 
+#labuladong的解法
 class Solution:
     def permute(self, nums):   
         res = [] # 结果

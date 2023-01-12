@@ -1,2 +1,3 @@
 https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array
 https://leetcode.cn/problems/perfect-squares/
+https://leetcode.cn/problems/n-queens/solution/nhuang-hou-by-leetcode-solution/
