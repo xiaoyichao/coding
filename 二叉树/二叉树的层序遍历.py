@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-09 14:21:46
-LastEditTime: 2023-01-09 14:58:20
+LastEditTime: 2023-01-27 13:16:25
 Description: https://leetcode.cn/problems/binary-tree-level-order-traversal/solution/bfs-wei-shi-yao-yao-yong-dui-lie-yi-ge-s-xlpz/
 '''
 from typing import List,Optional

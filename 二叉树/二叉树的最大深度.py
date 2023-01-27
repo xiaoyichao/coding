@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-12-16 17:09:42
-LastEditTime: 2023-01-09 13:24:56
+LastEditTime: 2023-01-26 17:11:57
 Description: 
 
 https://leetcode.cn/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de-zui-da-shen-du-by-leetcode-solution/
@@ -11,15 +11,15 @@ https://leetcode.cn/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de
 '''
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 # 深度优先搜索
 class Solution:
-    def maxDepth_1(self, root):
+    def maxDepth(self, root):
         if root is None: 
             return 0 
         else: 
