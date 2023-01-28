@@ -3,19 +3,18 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2022-11-23 15:31:09
-LastEditTime: 2022-11-23 15:33:23
+LastEditTime: 2023-01-27 19:41:07
 Description: 
 
-链接：https://leetcode.cn/problems/binary-search/solution/py-by-mou-6d-uavv/
-
+链接：https://leetcode.cn/problems/binary-search/submissions/
 '''
 from typing import List
 
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left,right=0,len(nums)
-        while left<right:
+        left,right=0,len(nums)-1
+        while left<=right:
             mid=left+(right-left)//2
             if nums[mid]==target:
                 return mid
