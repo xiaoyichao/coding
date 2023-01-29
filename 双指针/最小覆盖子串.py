@@ -6,7 +6,6 @@ Date: 2022-07-28 22:02:26
 LastEditTime: 2023-01-30 00:24:23
 Description: https://leetcode.cn/problems/minimum-window-substring/
 
-解析可以参考这个 https://leetcode.cn/problems/minimum-window-substring/solution/by-flix-1kac/
 '''
 from collections import defaultdict
 
@@ -30,8 +29,6 @@ class Solution:
                 windows_dict[s[r]] += 1
                 if windows_dict[s[r]] == need_dict[s[r]]: # 判断某个字母所需要的数字是否在窗口中是否已经满足
                     valid+=1
-            
-            
             
             while (valid == len(need_dict)): # need中需要的，windows中都满足了
                 # print("满足数据", s[l:r+1]) # 字符串是左闭右开，所以需要右边+1才能取到
