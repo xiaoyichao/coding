@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-30 10:28:10
-LastEditTime: 2023-01-30 13:11:32
+LastEditTime: 2023-01-30 14:18:04
 Description: https://leetcode.cn/problems/permutation-in-string/
 '''
 from collections import defaultdict
@@ -31,12 +31,12 @@ class Solution:
                     return True
 
                 d = s2[l]
-                l += 1
+                
                 if d in need:
                     if window[d] == need[d]:
                         valid -= 1
                     window[d] -= 1  # 这个位置注意window[d] -= 1的操作 会影响if window[d] == need[d]的判断结果，所以得注意写在IF的后边
-
+                l += 1
         return False
 
 s=Solution()
