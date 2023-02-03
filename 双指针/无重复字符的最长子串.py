@@ -1,10 +1,10 @@
 # coding=UTF-8
 '''
 Author: xiaoyichao
-LastEditors: xiaoyichao
+LastEditors: xiaoyichao xiao_yi_chao@163.com
 Date: 2022-12-13 15:38:18
-LastEditTime: 2022-12-13 16:52:39
-Description: 
+LastEditTime: 2023-02-03 09:28:46
+Description: https://leetcode.cn/problems/longest-substring-without-repeating-characters/
 
 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
 输入: s = "abcabcbb"
@@ -12,6 +12,26 @@ Description:
 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
 '''
+# labuladong 的解法
+from collections import defaultdict
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        window = defaultdict(int)
+        l = 0 
+        r = 0
+        count = 0
+
+        while r<len(s):
+            c = s[r]
+            r+=1
+            window[c] +=1
+                
+            while window[c] >1 :
+                d = s[l]
+                l+=1
+                window[d] -=1
+            count = max(count,r-l)  # 这个位置不能写count = max(count,len(window)) 因为进入过window的数据，即使value =0 但是key也存在
+        return count
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
