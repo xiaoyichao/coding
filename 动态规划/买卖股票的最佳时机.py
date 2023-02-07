@@ -12,21 +12,20 @@
 from typing import List
 class Solution:
 
-    # def maxProfit(self, prices: List[int]) -> int:
-    #     minprice = float('inf')
-    #     maxprofit = 0
-    #     for price in prices:
-    #         minprice = min(minprice, price)
-    #         maxprofit = max(maxprofit, price - minprice)
-    #     return maxprofit
-
     def maxProfit(self, prices: List[int]) -> int:
-        min_price = float("inf")
-        max_profit = 0
-        for price in prices:
-            min_price = min(min_price, price)
-            max_profit = max(max_profit, price-min_price)
-        return max_profit
+        n = len(prices)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][0] = 
+
+
+    # def maxProfit(self, prices: List[int]) -> int:
+    #     min_price = float("inf")
+    #     max_profit = 0
+    #     for price in prices:
+    #         min_price = min(min_price, price)
+    #         max_profit = max(max_profit, price-min_price)
+    #     return max_profit
         
 
 s = Solution()
