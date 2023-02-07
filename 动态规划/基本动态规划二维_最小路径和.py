@@ -22,7 +22,7 @@ class Solution:
 
         rows, columns = len(grid), len(grid[0])
         dp = [[0] * columns for _ in range(rows)]  # 构造缓存
-        # dp = [[0] * columns] * rows  这句有问题
+        # dp = [[0] * columns] * rows  这句有问题，因为列表是指针到内存的。
         dp[0][0] = grid[0][0]  # 初始化左上角数据
         # 一共三个情况
         for i in range(1, rows):  # 第一列的数据，只能从第一列的左侧往右移动
