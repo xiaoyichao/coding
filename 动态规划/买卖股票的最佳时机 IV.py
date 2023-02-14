@@ -13,25 +13,63 @@ Description: https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/
 '''
 from typing import List
 
+
+# labuladong 的解法
 class Solution:
-    def maxProfit(self, k: int, prices: List[int]) -> int:
-        dp = [0] 
-        dp[-1][...][0] = 0
-        # 解释：因为 i 是从 0 开始的，所以 i = -1 意味着还没有开始，这时候的利润当然是 0。
+    def maxProfit(self, max_k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if n <= 0:
+            return 0
+        if max_k > n // 2:
+            # 交易次数 k 没有限制的情况，买卖不能在同一天发生，所以最大交易次数限制>天数//2的时候，相当没有交易次数的限制。
+            return self.maxProfit_k_inf(prices)
 
-        dp[-1][...][1] = -float('inf')
-        # 解释：还没开始的时候，是不可能持有股票的。
-        # 因为我们的算法要求一个最大值，所以初始值设为一个最小值，方便取最大值。
+        # base case：
+        # dp[-1][...][0] = dp[...][0][0] = 0
+        # dp[-1][...][1] = dp[...][0][1] = -infinity
+        # 假如你可最多交易2次，那当前，你可能，还可以交易0，1，2次三个可能。所以k的维度要取到K的右闭区间。
+        # 我们先创建一个三维的空数组，每个元素都是0
+        dp = [[[0 for _ in range(2)] for _ in range(max_k + 1)] for _ in range(n)]
+        # 给数组里的数据赋初值
+        # k = 0 时的 base case
+        for i in range(n): # k = 0 意味着根本不允许交易
+            dp[i][0][1] = float('-inf') #不允许交易的情况下，是不可能持有股票的，我们先把利润设置为负无穷
+            dp[i][0][0] = 0 # 这时候利润当然是 0
 
-        dp[...][0][0] = 0
-        # 解释：因为 k 是从 1 开始的，所以 k = 0 意味着根本不允许交易，这时候利润当然是 0。
+        for i in range(n):
+            for k in range(max_k, 0, -1):
+                if i - 1 == -1: 
+                    # i = 0 的时候，没办法计算i-1的情况了，这是 base case。
+                    dp[i][k][0] = 0
+                    dp[i][k][1] = -prices[i]
+                else:    
+                    # 状态转移方程
+                    # 第i天，不持有股票，还可以交易k次 = max（【i-1天，还可以交易k次，未持有】，【i-1天，还可以交易k次，持有，但是会卖出，k在买入的动作计数，卖出的时候不计数】
+                    dp[i][k][0] = max(dp[i - 1][k][0], dp[i - 1][k][1] + prices[i]) 
+                    # 第i天，不持有股票，还可以交易k次 = max（【昨天和今天的状态一样】，【昨天买入】） 买入的时候，k的计数要变化。
+                    dp[i][k][1] = max(dp[i - 1][k][1], dp[i - 1][k - 1][0] - prices[i])
+        return dp[n - 1][max_k][0]
 
-        dp[...][0][1] = -float('inf')
-        # 解释：不允许交易的情况下，是不可能持有股票的。
-        # 因为我们的算法要求一个最大值，所以初始值设为一个最小值，方便取最大值。
+    # 第 122 题，k 无限的解法
+    def maxProfit_k_inf(self, prices: List[int]) -> int:
+        n = len(prices)
+        dp = [[0 for _ in range(2)] for _ in range(n)]
+        for i in range(n):
+            if i - 1 == -1:
+                # base case
+                dp[i][0] = 0
+                dp[i][1] = -prices[i]
+            else:
+                dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+                dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])
+        return dp[n - 1][0]
 
-        # 状态转移方程
-        dp[]
+        
+k = 2
+prices = [3,2,6,5,0,3]
+s = Solution()
+res = s.maxProfit(k,prices)
+prices(s)
 
 # chatGPT 写的代码
 class Solution:
