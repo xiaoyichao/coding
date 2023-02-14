@@ -32,3 +32,11 @@ class Solution:
                 dp_1 = max(dp_1,  dp_0-prices[i])
                 dp_0 = max(dp_0, dp_1+prices[i])
         return dp_0
+
+    # 奇淫做法，主要是对题目的理解，相当于每个波段的差价都赚到
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        res = 0
+        for i in range(1, n):
+            res += max(0, prices[i]-prices[i-1])
+        return res

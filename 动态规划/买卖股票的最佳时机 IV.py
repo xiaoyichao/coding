@@ -24,21 +24,13 @@ class Solution:
             # 交易次数 k 没有限制的情况，买卖不能在同一天发生，所以最大交易次数限制>天数//2的时候，相当没有交易次数的限制。
             return self.maxProfit_k_inf(prices)
 
-        # base case：
-        # dp[-1][...][0] = dp[...][0][0] = 0
-        # dp[-1][...][1] = dp[...][0][1] = -infinity
         # 假如你可最多交易2次，那当前，你可能，还可以交易0，1，2次三个可能。所以k的维度要取到K的右闭区间。
         # 我们先创建一个三维的空数组，每个元素都是0
         dp = [[[0 for _ in range(2)] for _ in range(max_k + 1)] for _ in range(n)]
-        # 给数组里的数据赋初值
-        # k = 0 时的 base case
-        for i in range(n): # k = 0 意味着根本不允许交易
-            dp[i][0][1] = float('-inf') #不允许交易的情况下，是不可能持有股票的，我们先把利润设置为负无穷
-            dp[i][0][0] = 0 # 这时候利润当然是 0
-
+        
         for i in range(n):
             for k in range(max_k, 0, -1):
-                if i - 1 == -1: 
+                if i == 0:  #base case
                     # i = 0 的时候，没办法计算i-1的情况了，这是 base case。
                     dp[i][k][0] = 0
                     dp[i][k][1] = -prices[i]
