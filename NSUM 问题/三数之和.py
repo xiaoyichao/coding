@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: 肖轶超 30403377+xiaoyichao@users.noreply.github.com
 Date: 2022-11-23 17:12:51
-LastEditTime: 2023-02-20 16:07:17
+LastEditTime: 2023-02-20 16:29:47
 Description: https://leetcode.cn/problems/3sum/
 
 '''
@@ -20,16 +20,17 @@ class Solution:
             _sum = nums[lo] + nums[hi]
             left, right = nums[lo], nums[hi]
             if _sum < target:
-                while lo < hi and nums[lo] == left:
+                while lo < hi and nums[lo] == nums[lo + 1]: # 跳过相同的元素
                     lo += 1
-                # 这个写法也可以
-                # while lo < hi and nums[lo] == nums[lo + 1]: # 跳过相同的元素
+                lo += 1  # 本身的迭代
+
+                # 这种写法也可以，但是有点晦涩
+                # while lo < hi and nums[lo] == left:
                 #     lo += 1
-                # lo += 1  # 本身的迭代
             elif _sum > target:
-               while lo < hi and nums[hi] == right:
+                while lo < hi and nums[hi] == nums[hi - 1]:
                     hi -= 1
-                # hi -= 1
+                hi -= 1
             else: # _sum == target
                 res.append([nums[lo], nums[hi]])
                 while lo < hi and nums[lo] == nums[lo + 1]: # 跳过相同的元素
