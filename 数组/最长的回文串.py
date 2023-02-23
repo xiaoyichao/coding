@@ -14,6 +14,7 @@ class Solution:
             return s[i+1:j]
         res = ""
         for k in range(0,len(s)):
+            # 找回文串的关键技巧是传入两个指针 l 和 r 向两边扩散，因为这样实现可以同时处理回文串长度为奇数和偶数的情况。
             res_l =  Palindrome(k,k,s)
             res_r = Palindrome(k,k+1,s)
             res = res_l if len(res_l) > len(res) else res

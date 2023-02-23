@@ -7,7 +7,7 @@ LastEditTime: 2022-11-26 15:15:33
 Description: 
 
 https://leetcode.cn/problems/3sum/solution/pai-xu-shuang-zhi-zhen-zhu-xing-jie-shi-python3-by/
-现在这个写的不对，需要重新看一下，大方向是对的。
+
 '''
 from typing import List
 

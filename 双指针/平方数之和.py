@@ -4,7 +4,7 @@ Author: xiaoyichao
 LastEditors: Please set LastEditors
 Date: 2021-03-25 22:02:23
 LastEditTime: 2022-03-15 09:18:48
-Description: https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/description/
+Description: https://leetcode.cn/problems/sum-of-square-numbers/
 '''
 
 import math

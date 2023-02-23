@@ -21,7 +21,7 @@ class Solution:
             elif nums[mid]<target:
                 left=mid+1
             else:
-                right=mid
+                right=mid-1
         return -1
 
 nums = [-1,0,3,5,9,12]
