@@ -45,7 +45,23 @@ class Solution:
                 a,b = b, a+b
         return b
 
+class Solution:
+    def fib(self, n: int) -> int:
+        a = 0
+        b =0
+        for i in range(0,n+1,1):
+            if i ==0:
+                a = 0
+                a,b = b, a+b
+                print(b)
+            elif i ==1:
+                a=1
+                a,b = b, a+b
+                print(b)
+            else:
+                a,b = b, a+b
+        return b
         
 s = Solution()
-res = s.fib(3)
+res = s.fib(1)
 print(res)
