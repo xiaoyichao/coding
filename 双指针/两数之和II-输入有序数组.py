@@ -1,9 +1,9 @@
 # coding=UTF-8
 '''
 Author: xiaoyichao
-LastEditors: xiaoyichao
+LastEditors: xiaoyichao xiao_yi_chao@163.com
 Date: 2021-03-22 21:33:25
-LastEditTime: 2021-03-25 22:11:44
+LastEditTime: 2023-02-25 21:45:32
 Description: https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/description/
 '''
 
@@ -28,6 +28,21 @@ class Solution:
                 j -= 1
         return[]
 
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        left = 0
+        right = len(numbers)-1
+        res = []
+        while left< right:
+            if numbers[left] + numbers[right]== target:
+                res = [left+1, right+1]
+                return res
+            elif numbers[left] + numbers[right] < target:
+                left+=1
+            else:
+                right-=1
+        return res
+        
 
 solution = Solution()
 print(solution.twoSum(numbers=[2, 7, 11, 15], target=9))
