@@ -8,6 +8,40 @@ Description: https://leetcode.cn/problems/non-decreasing-array/
 '''
 from typing import List
 
+class Solution:
+    def checkPossibility(self, nums: List[int]) -> bool:
+        if len(nums)<=2:
+            return True
+        l = 0 
+        r = len(nums)-1
+
+        while nums[l]<= nums[l+1] and l<len(nums)-2:
+            l+=1
+        if l == len(nums)-2:
+            return True
+        
+        while nums[r-1]<= nums[r] and r>0:
+            r-=1
+        if r == 0:
+            return True
+    
+        if r-l >1:
+            print("a")
+            return False
+
+        if r-l<=1: 
+            if l == 0 or r == len(nums)-1:
+                return True
+            if nums[l] <= nums[r+1] or nums[r]>=nums[l-1]:
+                print("c")
+                print(nums[l], nums[r])
+                return True
+            else:
+                print("b")
+                print(nums[l], nums[r])
+                return False
+
+
 
 #  左右指针的思想，但是边界情况要考虑的多一点
 class Solution: 
