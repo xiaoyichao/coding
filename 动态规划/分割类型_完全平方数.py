@@ -3,12 +3,34 @@
 
 完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。
 
-来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/perfect-squares
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
 
 '''
 import math
+
+class Solution: #递归
+    def numSquares(self, n: int) -> int:
+        min_num = n
+        i = 1
+        while i*i <= n:
+            min_num = min(min_num, self.numSquares(n - i*i) + 1)
+            i += 1
+        return min_num
+
+class Solution: #带备忘录的递归
+    def numSquares(self, n: int, mem = {}) -> int:
+        if n in mem:
+            return mem[n]
+        min_num = n
+        i = 1
+        while i*i <= n:
+            min_num = min(min_num, self.numSquares(n - i*i, mem) + 1)
+            mem[n] = min_num
+            i += 1
+        return min_num
+
+
 class Solution:
     def numSquares(self, n: int) -> int:
         dp = [0]*(n+1)    
