@@ -58,7 +58,7 @@ class Solution:
         dp[0] = 0
         for i in range(amount+1): #for 循环在遍历所有状态的所有取值，这两层可以调换，
             for coin in coins: #for 循环在求所有选择的最小值
-                if i - coin < 0:
+                if i - coin < 0: #一些节点不是这是需要的节点，虽然我们设置的是一个满K叉树
                     continue
                 dp[i] = min(dp[i], 1+dp[i-coin])
 
