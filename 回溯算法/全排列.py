@@ -3,7 +3,7 @@
 Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-23 16:44:31
-LastEditTime: 2023-01-24 17:35:18
+LastEditTime: 2023-02-28 17:42:54
 Description: https://leetcode.cn/problems/permutations/
 
 排列（元素无重不可复选）
@@ -66,6 +66,7 @@ class Solution:
 class Solution:
     def permute(self, nums):   
         res = [] # 结果
+        
         def backtrack(nums, track, used):
             # track 【选择列表】，表示当前可以做的选择
             # used【路径】，记录做过的选择
@@ -75,9 +76,10 @@ class Solution:
                 # 做选择
                 track.append(nums[i])
                 # 进入下一层决策树
-                backtrack(nums[:i] + nums[i + 1:], track, used + [nums[i]])
+                backtrack(nums[:i] + nums[i + 1:], track, used + [nums[i]]) #其实就是把nums[i] 从nums 中移出到used中，track也同步记录nums[i]
                 # 取消选择
                 track.pop() # 返回上一层决策树
+        
         backtrack(nums, [], [])
         return res
 
