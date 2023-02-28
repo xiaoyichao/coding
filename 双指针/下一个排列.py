@@ -1,4 +1,6 @@
 "https://leetcode.cn/problems/next-permutation/"
+from typing import List
+
 
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
@@ -23,3 +25,9 @@ class Solution:
             nums[l], nums[r] = nums[r], nums[l]
             l += 1
             r -= 1
+        return nums
+
+
+s = Solution()
+res = s.nextPermutation([1, 3, 2, 5, 8, 4, 5, 6, 9])
+print(res)
