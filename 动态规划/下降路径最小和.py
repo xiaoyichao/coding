@@ -3,21 +3,27 @@
 from typing import List
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        n = len(matrix)
         mem = [[float("inf")]* len(matrix[0]) for i in range(len(matrix))]
-        # print(mem)
         res = float("inf")
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                res = min(res, self.dp(i,j,mem, matrix))
-        return mem[i,j]
+        for j in range(len(matrix)):
+            res = min(res, self.dp(n-1, j, mem, matrix ))
+        return res
 
-    def dp(self, i, j, mem, matrix):
+    def dp(self, i, j, mem, matrix ):
+        # base case
         if i == 0:
-            mem[i][j] = matrix[i][j]
-        if mem[i][j] != float("-inf"):
+            return matrix[0][j]
+        # 查找备忘录
+        if mem[i][j] != float("inf"):
             return mem[i][j]
-        print(i,j, mem[i][j], matrix[i][j])
-        mem[i][j] = matrix[i][j] + min(matrix[i-1][j-1],matrix[i-1][j],matrix[i-1][j+1])
+        # 进行状态转移
+        left = self.dp(i-1,j-1, mem, matrix) if j-1>=0 else float("inf") 
+        mid = self.dp(i-1,j, mem, matrix)
+        right = self.dp(i-1,j+1, mem, matrix) if j+1<len(matrix[0]) else float("inf")
+        mem[i][j] = matrix[i][j] + min(left,
+                                       mid,
+                                       right)
         return mem[i][j]
 
 s= Solution()
