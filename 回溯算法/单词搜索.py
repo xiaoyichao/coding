@@ -2,7 +2,7 @@
 
 from typing import List
 
-class Solution:
+class Solution: # 外边是回溯，里边是DFS
     def exist(self, board: List[List[str]], word: str) -> bool:
         # 定义 DFS 函数
         def dfs(i, j, k):
