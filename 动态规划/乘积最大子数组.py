@@ -2,25 +2,44 @@
 
 from typing import List
 
+# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
+# 如有疑惑，可以参照我写的 java 代码对比查看。
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         n = len(nums)
-        # 定义两个数组f_max和f_min，分别表示以当前位置为结尾的乘积最大值和乘积最小值
-        f_max = [0] * n
-        f_min = [0] * n
-        # 初始化，以第一个数为结尾的子数组中最大值和最小值都是第一个数本身
-        f_max[0] = nums[0]
-        f_min[0] = nums[0]
-        # 遍历数组，逐个计算f_max和f_min数组的值
+
+        # 定义：以 nums[i] 结尾的子数组，乘积最小为 dp1[i]
+        dp1 = [0] * n
+        # 定义：以 nums[i] 结尾的子数组，乘积最大为 dp2[i]
+        dp2 = [0] * n
+
+        # base case
+        dp1[0] = nums[0]
+        dp2[0] = nums[0]
+
+        # 状态转移方程
         for i in range(1, n):
-            if nums[i] > 0:
-                 # 如果当前数是非负数，那么乘以以前的最大值会变成最大值，乘以以前的最小值会变成最小值
-                f_max[i] = max(nums[i], f_max[i-1] * nums[i])
-                f_min[i] = min(nums[i], f_min[i-1] * nums[i])
-            # 如果当前数是负数，那么乘以以前的最小值会变成最大值，乘以以前的最大值会变成最小值
-            else:
-                f_max[i] = max(nums[i], f_min[i-1] * nums[i])
-                f_min[i] = min(nums[i], f_max[i-1] * nums[i])
-        # 返回f_max数组中的最大值即可
-        return max(f_max)
+            dp1[i] = min(dp1[i - 1] * nums[i], dp2[i - 1] * nums[i], nums[i])
+            dp2[i] = max(dp1[i - 1] * nums[i], dp2[i - 1] * nums[i], nums[i])
+
+        # 遍历所有子数组的最大乘积，求最大值
+        res = max(dp2)
+
+        return res
+    
+# 更好的方法，只保留最近的结果，
+# 在更新dp_min和dp_max时，应该在同一轮循环内先更新dp_min，再更新dp_max，因为更新dp_max时需要用到dp_min的值，
+# 如果先更新dp_max，那么dp_min的值就已经被更新过了，不是原始的dp_min的值了。
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp_min = nums[0]
+        dp_max = nums[0]
+        res = dp_max
+        for i in range(1, n):
+            prev_dp_min = dp_min
+            dp_min = min(prev_dp_min * nums[i], dp_max * nums[i], nums[i])
+            dp_max = max(prev_dp_min * nums[i], dp_max * nums[i], nums[i])
+            res = max(res, dp_max)
+        return res
