@@ -30,13 +30,14 @@ def merge_sort(alist):
     left_point,right_point = 0,0
     result = []
     while left_point < len(left) and right_point < len(right):
+        # 两个list中选择一个
         if left[left_point] <= right[right_point]:
             result.append(left[left_point])
             left_point += 1
         else:
             result.append(right[right_point])
             right_point += 1
-
+    # 把剩下的拼接上去，其实只会拼接一组，因为有一组已经被消耗光了。
     result += left[right_point:]
     result += right[left_point:]
     return result
