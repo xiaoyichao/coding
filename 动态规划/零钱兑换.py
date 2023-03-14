@@ -51,18 +51,24 @@ class Solution:
         return self.mem[amount]
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int: # dp 数组的迭代解法 labuladong解法
-        dp = [amount +1] * (amount+1) # 其实float('inf') 换成amount+1 也可以，因为最大能取到amount，因为有根节点的存在，所以是amount+1长度的列表
-        # 比如要组成11个的硬币数值，你最差的情况是用11个1元的硬币，你从根节点需要一直往下走11层，加上根节点，既是11+1=12层。
-        # base case
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # 初始化一个长度为 amount+1 的数组，用 amount+1 来表示不可达
+        dp  = [amount+1]*(amount+1)
+        # base case，凑成总金额为 0 的硬币数为 0
         dp[0] = 0
-        for i in range(amount+1): #for 循环在遍历所有状态的所有取值，这两层可以调换，
-            for coin in coins: #for 循环在求所有选择的最小值
-                if i - coin < 0: #一些节点不是这是需要的节点，虽然我们设置的是一个满K叉树
-                    continue
-                dp[i] = min(dp[i], 1+dp[i-coin])
+        
+        # 遍历硬币数组中的每一个硬币
+        for coin in coins:
+            # 遍历总金额范围，从 coin 到 amount
+            for i in range(coin, amount+1):
+                # 如果当前金额 i 减去当前硬币的面值 coin 小于 0，说明当前硬币不能选，直接跳过
+                # 否则，当前金额 i 可以由 dp[i-coin] 转移过来，选取当前硬币 coin 需要花费 1，因此加 1
+                if i-coin>=0:
+                    dp[i] = min(dp[i], dp[i-coin]+1)
+        
+        # 返回凑成总金额 amount 的最少硬币数，如果凑不出，返回 -1
+        return dp[amount] if dp[amount]!=amount+1 else -1
 
-        return -1 if dp[amount]==amount +1 else dp[amount]
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int: # dp 数组的迭代解法 官方解法
