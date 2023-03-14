@@ -13,7 +13,7 @@ class Solution:
             dp[0][j] = int(matrix[0][j])
         # 状态转移
         for i in range(1,m):
-            for j in range(j,n):
+            for j in range(1,n):
                 if matrix[i][j]== str(0):
                     continue
                 dp[i][j] =  min(dp[i-1][j], dp[i-1][j-1], dp[i][j-1]) +1
