@@ -2,34 +2,56 @@
 
 
 import collections
+class LRUCache: # 这个方式最简单易懂
 
-# labuladong
-class LRUCache:
     def __init__(self, capacity: int):
-        self.cap = capacity
-        self.cache = collections.OrderedDict() 
-        #OrderedDict直接实现了双向链表和哈希表，牛啊。直接省事了
+        self.capacity = capacity
+        self.cache = collections.OrderedDict()
+
 
     def get(self, key: int) -> int:
-        if key not in self.cache:
+        if key in self.cache:
+            value = self.cache.pop(key)
+            self.cache[key] = value
+            return value
+        else:
             return -1
-        # 将 key 变为最近使用
-        self.cache.move_to_end(key)
-        return self.cache[key]
+
 
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
-            # 修改 key 的值
+            self.cache.pop(key)
             self.cache[key] = value
-            # 将 key 变为最近使用
-            self.cache.move_to_end(key)
-            return
+        else:
+            if len(self.cache) >= self.capacity:
+                self.cache.popitem(last=False)
+            self.cache[key] = value
 
-        if len(self.cache) >= self.cap:
-            # 链表头部就是最久未使用的 key
-            self.cache.popitem(last=False)
-        # 将新的 key 添加链表尾部
-        self.cache[key] = value
+
+
+import collections
+class LRUCache: #其次就是这个
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = collections.OrderedDict()
+
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            self.cache.move_to_end(key)
+            return self.cache[key] 
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache[key] = value
+            self.cache.move_to_end(key)
+        else:
+            if len(self.cache) >= self.capacity:
+                self.cache.popitem(last=False)
+            self.cache[key] = value
 
 
 class Node:
