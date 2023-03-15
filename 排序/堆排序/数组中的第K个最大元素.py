@@ -1,5 +1,35 @@
 "https://leetcode.cn/problems/kth-largest-element-in-an-array/"
 
+import random
+from typing import List
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        def partition(left: int, right: int) -> int:
+            pivot = random.randint(left, right)
+            nums[right], nums[pivot] = nums[pivot], nums[right]
+            pivot = left
+            for i in range(left, right):
+                if nums[i] > nums[right]:
+                    nums[pivot], nums[i] = nums[i], nums[pivot]
+                    pivot += 1
+            nums[pivot], nums[right] = nums[right], nums[pivot]
+            return pivot
+
+        def quick_select(left: int, right: int, k: int) -> int:
+            if left == right:
+                return nums[left]
+            pivot = partition(left, right)
+            if k == pivot:
+                return nums[k]
+            elif k < pivot:
+                return quick_select(left, pivot - 1, k)
+            else:
+                return quick_select(pivot + 1, right, k)
+
+        return quick_select(0, len(nums) - 1, k - 1)
+
+
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
 

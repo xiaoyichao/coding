@@ -12,6 +12,26 @@ Description: https://leetcode.cn/problems/longest-substring-without-repeating-ch
 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
 '''
+
+# 我的解法
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        win_set = set()
+
+        left,right= 0,0
+        
+        while right<len(s):
+            if s[right] not in win_set:
+                win_set.add(s[right])
+                res = max(res, len(win_set))
+                right +=1
+            else:
+                win_set.remove(s[left])
+                left+=1       
+        return res
+    
+
 # labuladong 的解法
 from collections import defaultdict
 class Solution:
