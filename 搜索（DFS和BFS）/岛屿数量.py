@@ -6,31 +6,34 @@ from typing import List
 # 这个代码很精简啊
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        # 定义深度优先搜索函数
-        def dfs(i, j):
-            # 判断是否越界或者当前位置不为陆地
-            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1':
-                return
-            # 将当前位置标记为已访问
+        # 计算岛屿数量的函数
+        def dfs(grid, i, j):
+            # 若行或列超出边界，或者遇到水，则返回0
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':
+                return 0
+
+            # 将访问过的陆地标记为0
             grid[i][j] = '0'
-            # 深度优先搜索四周的位置
-            dfs(i-1, j)
-            dfs(i+1, j)
-            dfs(i, j-1)
-            dfs(i, j+1)
+
+            # 继续递归搜索上下左右四个方向
+            dfs(grid, i - 1, j)
+            dfs(grid, i + 1, j)
+            dfs(grid, i, j - 1)
+            dfs(grid, i, j + 1)
+
+            return 1
 
         # 初始化岛屿数量为0
-        count = 0
-        # 遍历所有位置
+        num_of_islands = 0
+
+        # 遍历网格中的所有元素
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                # 如果当前位置为陆地
+                # 如果当前元素是陆地，岛屿数量加1，并执行深度优先搜索
                 if grid[i][j] == '1':
-                    # 岛屿数量加1
-                    count += 1
-                    # 深度优先搜索四周的位置
-                    dfs(i, j)
-        return count
+                    num_of_islands += dfs(grid, i, j)
+
+        return num_of_islands
 
 
 
