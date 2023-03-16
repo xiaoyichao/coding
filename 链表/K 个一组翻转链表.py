@@ -25,13 +25,13 @@ class Solution:
 
     """ 反转区间 [a, b) 的元素，注意是左闭右开 """
     def reverse(self, a: ListNode, b: ListNode) -> ListNode: 
-        pre, cur, nxt = None, a, a
+        pre, cur, tmp = None, a, a
         # while 终止的条件改一下就行了
         while cur != b:
-            nxt = cur.next
+            tmp = cur.next
             cur.next = pre
             pre = cur
-            cur = nxt
+            cur = tmp
         # 返回反转后的头结点
         return pre
 
