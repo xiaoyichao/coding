@@ -6,7 +6,7 @@ Date: 2022-08-15 22:03:53
 LastEditTime: 2022-12-13 13:57:36
 Description:
 
-https://blog.csdn.net/weixin_43250623/article/details/88931925
+https://leetcode.cn/problems/sort-an-array/submissions/
 
 快速排序算法其实很简单，采用分治策略。步骤如下：
 
@@ -19,7 +19,42 @@ https://blog.csdn.net/weixin_43250623/article/details/88931925
 快速排序是从上到下进行分区实现排序。
 
 '''
+import random
+from typing import List
 
+class Solution: # 建议用这个
+    def sortArray(self, nums: List[int]) -> List[int]:
+        if len(nums)<=1:
+            return nums
+        else:
+            pivot = random.choice(nums)
+            left = []
+            right = []
+            mid = []
+            for num in nums:
+                if num < pivot:
+                    left.append(num)
+                elif num == pivot:
+                    mid.append(num)
+                else:
+                    right.append(num)
+            return self.sortArray(left) + mid + self.sortArray(right)
+
+
+
+def quick_sort(nums):
+    if len(nums)<=1:
+        return nums
+    else:
+        pivot = nums[-1]
+        left = []
+        right = []
+        for num in nums[:-1]:
+            if num <= pivot:
+                left.append(num)
+            else:
+                right.append(num)
+        return quick_sort(left) + [pivot] + quick_sort(right)
 
 def quick_sort(alist, start, end):
     """快速排序"""
@@ -44,6 +79,7 @@ def quick_sort(alist, start, end):
     quick_sort(alist, start, low - 1)  # start :0  low -1 原基准元素靠左边一位
     # 对基准元素右边的子序列进行快速排序
     quick_sort(alist, low + 1, end)  # low+1 : 原基准元素靠右一位  end: 最后
+
 
 
 def quick_sort_1(alist, start, end):

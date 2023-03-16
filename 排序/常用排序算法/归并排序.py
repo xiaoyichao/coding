@@ -7,6 +7,7 @@ Date: 2022-08-15 22:04:22
 LastEditTime: 2022-08-15 22:04:23
 Description: 
 
+https://leetcode.cn/problems/sort-an-array/submissions/
 拆分到单个元素，然后两个两个往上进行递归合并。设置left 和right两个游标,进行合并。
 时间复杂度：o(nlogn)
 
@@ -15,29 +16,32 @@ Description:
 稳定，但是，归并排序并没有像快排那样，应用广泛，这是为什么呢？因为它有一个致命的“弱点”，那就是归并排序不是原地排序算法。
  这是因为归并排序的合并函数，在合并两个有序数组为一个有序数组时，需要借助额外的存储空间。
 
-https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/ge-chong-pai-xu-suan-fa-tu-xie-zong-jie-by-ke-ai-x/
-
-https://cloud.tencent.com/developer/article/1882947
 '''
-def merge_sort(alist):
-    n = len(alist)
-    if n <= 1:
-        return alist
-    mid = n//2
-    left = merge_sort(alist[:mid])
-    right = merge_sort(alist[mid:])
+from typing import List
 
-    left_point,right_point = 0,0
-    result = []
-    while left_point < len(left) and right_point < len(right):
-        # 两个list中选择一个
-        if left[left_point] <= right[right_point]:
-            result.append(left[left_point])
-            left_point += 1
-        else:
-            result.append(right[right_point])
-            right_point += 1
-    # 把剩下的拼接上去，其实只会拼接一组，因为有一组已经被消耗光了。
-    result += left[right_point:]
-    result += right[left_point:]
-    return result
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        if len(nums)<=1:
+            return nums
+        mid = len(nums)//2
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
+        return self.merge(left,right)
+
+    def merge(self, left, right):
+        res = []
+        i, j = 0,0
+        while i<len(left) and j< len(right):
+            if left[i]<= right[j]:
+                res.append(left[i])
+                i+=1
+            else:
+                res.append(right[j])
+                j+=1
+        res = res+left[i:]
+        res = res+right[j:]
+        return res
+
+
+
+        
