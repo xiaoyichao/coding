@@ -13,6 +13,24 @@ Description: https://leetcode.cn/problems/longest-substring-without-repeating-ch
 
 '''
 
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_set = set()  # 用于存储不重复字符的集合
+        n = len(s)
+        right = 0  # 滑动窗口的右指针
+        max_len = 0  # 用于记录最长子串长度
+
+        for left in range(n):
+            while right < n and s[right] not in char_set:
+                char_set.add(s[right])
+                right += 1
+
+            max_len = max(max_len, len(char_set))  # 更新最长子串长度
+            char_set.remove(s[left])  # 移除左指针对应的字符，滑动窗口左边界向右移动
+
+        return max_len
+    
 # 我的解法
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
