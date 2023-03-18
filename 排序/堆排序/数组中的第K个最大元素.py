@@ -3,6 +3,23 @@
 import random
 from typing import List
 
+
+import random
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        pivot = random.choice(nums)
+        left = [x for x in nums if x < pivot]
+        right = [x for x in nums if x > pivot]
+        mid = [x for x in nums if x == pivot]
+
+        if k <= len(right):
+            return self.findKthLargest(right, k)
+        elif k > len(right) + len(mid):
+            return self.findKthLargest(left, k - len(right) - len(mid))
+        else:
+            return mid[0]
+
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         def partition(left: int, right: int) -> int:
