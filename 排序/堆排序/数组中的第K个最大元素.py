@@ -8,15 +8,20 @@ import random
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
+        # 随机选择一个数作为枢纽元
         pivot = random.choice(nums)
+        # 将原始列表分为三个子列表，分别存储小于、大于、等于枢纽元的数
         left = [x for x in nums if x < pivot]
         right = [x for x in nums if x > pivot]
         mid = [x for x in nums if x == pivot]
 
+        # 如果右边的列表的长度不小于k，说明第k大的数在右边列表中，递归查找右边列表
         if k <= len(right):
             return self.findKthLargest(right, k)
+        # 如果右边列表长度加上等于枢纽元的列表长度仍小于k，则第k大的数在左边列表中，递归查找左边列表
         elif k > len(right) + len(mid):
             return self.findKthLargest(left, k - len(right) - len(mid))
+        # 否则第k大的数就是枢纽元本身，直接返回
         else:
             return mid[0]
 
