@@ -30,18 +30,6 @@ def insert_sort(alist):
                 break
     return alist
 
-def insert_sort(alist):
-    len_alist = len(alist)
-    for i  in range(1,len_alist-1):
-        while i >0:
-            if alist[i] < alist[i-1]:
-                alist[i], alist[i-1] = alist[i-1], alist[i]
-                i-=1
-            else:
-                break
-        
-    return alist
-
 
 print(insert_sort([1,4,2,5,7,2,6,8,29]))
 
