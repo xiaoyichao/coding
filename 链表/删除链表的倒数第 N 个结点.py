@@ -17,17 +17,15 @@ class ListNode:
         self.val = val
         self.next = next
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(-1)
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)
         dummy.next = head
-        p1 = head
+        fast = slow = dummy
         for i in range(n):
-            p1 = p1.next
-        p2 = dummy
-        while p1:
-            p1 = p1.next
-            p2 = p2.next
-        p2.next = p2.next.next
+            fast = fast.next
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next
         return dummy.next
-
 
