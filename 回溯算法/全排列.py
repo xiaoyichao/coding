@@ -10,31 +10,22 @@ Description: https://leetcode.cn/problems/permutations/
 '''
 from typing import List    
 
-# chatgpt 的解法
+
+
+#labuladong的解法精简后
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        # 定义回溯函数
-        def backtrack(selected, candidates):
-            # 如果没有候选数了，说明已经找到了一组解
-            if not candidates:
-                res.append(selected)
-                return
-            
-            # 遍历所有候选数
-            for i in range(len(candidates)):
-                # 选择当前候选数
-                new_selected = selected + [candidates[i]]
-                # 从剩余的候选数中继续选择
-                new_candidates = candidates[:i] + candidates[i+1:]
-                # 进入下一层决策树
-                backtrack(new_selected, new_candidates)
-                
-        # 初始化结果列表
+    def permute(self, nums):  
         res = []
-        # 调用回溯函数
-        backtrack([], nums)
-        # 返回结果
+        def backtrack(nums, track):
+            if not nums:
+                res.append(track.copy())
+            for i in range(len(nums)):
+                track.append(nums[i])
+                backtrack(nums[:i]+nums[i+1:],track)
+                track.pop()
+        backtrack(nums, [],[])
         return res
+
 
 s = Solution()
 res = s.permute([1,2,3])
@@ -52,7 +43,7 @@ class Solution:
                 res.append(used)
             for i in range(len(nums)):
                 # 做选择
-                track.append(nums[i])
+                track.append(nums[i]) #track 在这个题目里实际上没啥作用
                 # 进入下一层决策树
                 backtrack(nums[:i] + nums[i + 1:], track, used + [nums[i]]) #其实就是把nums[i] 从nums 中移出到used中，track也同步记录nums[i]
                 # 取消选择

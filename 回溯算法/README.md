@@ -10,6 +10,53 @@
 
 3、结束条件：也就是到达决策树底层，无法再做选择的条件。
 
+# chatgpt 的总结
+子集问题：
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(start, track):
+            res.append(track[:])
+            for i in range(start, len(nums)):
+                track.append(nums[i])
+                backtrack(i+1, track)
+                track.pop()
+        backtrack(0, [])
+        return res
+
+排列问题：
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(selected, candidates):
+            if not candidates:
+                res.append(selected)
+                return
+            for i in range(len(candidates)):
+                new_selected = selected + [candidates[i]]
+                new_candidates = candidates[:i] + candidates[i+1:]
+                backtrack(new_selected, new_candidates)
+        backtrack([], nums)
+        return res
+
+组合问题：
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        def backtrack(start, track, target):
+            if target == 0:
+                res.append(track[:])
+                return
+            for i in range(start, len(candidates)):
+                if target - candidates[i] < 0:
+                    break
+                track.append(candidates[i])
+                backtrack(i, track, target-candidates[i])
+                track.pop()
+        backtrack(0, [], target)
+        return res
+
+# labuladong 的总结
 
 result = []
 def backtrack(路径, 选择列表):
