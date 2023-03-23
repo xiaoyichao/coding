@@ -18,12 +18,13 @@ class Solution:
         res = []
         def backtrack(nums, track):
             if not nums:
+            # if len(nums)==0:
                 res.append(track.copy())
             for i in range(len(nums)):
                 track.append(nums[i])
                 backtrack(nums[:i]+nums[i+1:],track)
                 track.pop()
-        backtrack(nums, [],[])
+        backtrack(nums, [])
         return res
 
 

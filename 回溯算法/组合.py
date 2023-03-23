@@ -20,6 +20,7 @@ class Solution:
             if k == len(track):  # base case
                 # 遍历到了第 k 层，收集当前节点的值
                 res.append(track[:])
+                return
             # 回溯算法标准框架
             for i in range(satrt, n+1):
                 # 选择
