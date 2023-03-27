@@ -9,6 +9,25 @@
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+        def dfs(root, min_val, max_val):
+            if not root:
+                return True
+           
+            if root.val<=min_val:
+                    return False
+            
+            if root.val>=max_val:
+                    return False
+
+            left = dfs(root.left, min_val, root.val)
+            right = dfs(root.right, root.val, max_val)
+            return left and right
+
+        return dfs(root, float('-inf'), float('inf'))
+        
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
         # 调用 check 函数，限定最小值和最大值为负无穷和正无穷
         return self.check(root, float('-inf'), float('inf'))
         
