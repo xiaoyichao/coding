@@ -4,7 +4,7 @@ Author: xiaoyichao
 LastEditors: xiaoyichao
 Date: 2023-01-09 14:21:46
 LastEditTime: 2023-01-27 13:16:25
-Description: https://leetcode.cn/problems/binary-tree-level-order-traversal/solution/bfs-wei-shi-yao-yao-yong-dui-lie-yi-ge-s-xlpz/
+Description: https://leetcode.cn/problems/binary-tree-level-order-traversal/
 '''
 from typing import List,Optional
 from collections import deque
@@ -28,12 +28,16 @@ class TreeNode:
 # 4 遍历完当前层后，将结果列表加入最终结果列表中。
 
 # 重复步骤2-4，直到队列为空。
+
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        # 如果根节点为空，返回空列表
         if not root:
             return []
+        # 初始化结果列表和队列
         res = []
         queue = [root]
+        # 当队列不为空时，依次取出队列中的节点，并将其左右子节点（如果存在）加入队列。
         while queue:
             level = []
             size = len(queue)
@@ -44,7 +48,39 @@ class Solution:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
+            # 将取出节点的值记录到当前层的结果列表中。
             res.append(level)
+        # 遍历完当前层后，将结果列表加入最终结果列表中。
         return res
 
+def test_levelOrder():
+    s = Solution()
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+    assert s.levelOrder(root) == [[3], [9, 20], [15, 7]]
+
+    
+# 当然，如果使用队列也可以。deque 是基于双端链表实现的，比list更快
+from collections import deque
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        res = []
+        queue = deque([root])
+        while queue:
+            level = []
+            tmp_size = len(queue)
+            for _ in range(tmp_size):
+                cur_node = queue.popleft()
+                level.append(cur_node.val)
+                if cur_node.left:
+                    queue.append(cur_node.left)
+                if cur_node.right:
+                    queue.append(cur_node.right)
+            res.append(level)
+        return res
 

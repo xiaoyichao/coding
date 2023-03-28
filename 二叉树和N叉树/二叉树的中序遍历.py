@@ -7,6 +7,24 @@
 #         self.left = left
 #         self.right = right
 
+# 递归
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        head = root
+        def dfs(head):
+            if not head:
+                return
+            # if head.left: 
+            dfs(head.left)
+            res.append(head.val)
+            # if head.right: 
+            dfs(head.right)
+
+        dfs(head)
+        return res
+            
+# 迭代
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # 定义结果列表和辅助栈
