@@ -8,15 +8,26 @@ Description:
 
 https://leetcode.cn/problems/sort-an-array/submissions/
 
+一句话总结：快速排序是先将一个元素排好序（左边不比这个元素大，右边比这个元素大），然后再将剩下的元素排好序。
 快速排序算法其实很简单，采用分治策略。步骤如下：
 
 选取一个基准元素（pivot）
 比pivot小的放到pivot左边，比pivot大的放到pivot右边
 对pivot左边的序列和右边的序列分别递归的执行步骤1和步骤2
 
+快速排序就是一个二叉树的前序遍历，你甚至将快速排序的过程看成一个构造二叉搜索树（左子树的元素都比根节点元素小，右子树的元素都比根节点元素大）的过程。
+但是这个时候，也会可能出现二叉树不均衡的情况（变成单链表的形式），这个时候就需要引入随机化的思想，随机选取一个元素作为pivot，这样就可以避免二叉树不均衡的情况。
+
+平均的时间复杂度和归并排序一样是O(NlogN), 极限的情况下，数据都在某一侧，那么就树的深度就会变成N,时间复杂度就会变成O(N^2)
+
 快速排序也是用到了分治思想和递归实现方式，这一点跟归并排序是一样的，但是快速排序的实现跟归并是完全不一样的。
 归并排序是先分解再合并，从下到上解决问题。
 快速排序是从上到下进行分区实现排序。
+
+
+快速排序是一种不稳定排序算法，主要原因在于在排序过程中涉及到元素的交换操作，这会导致相等元素在序列中的相对位置发生变化。例如，在快速排序过程中，如果存在两个相等元素A和B，并且A在B之前，那么在排序过程中，可能会将B移到A的前面，从而导致它们的相对位置发生变化，这就破坏了稳定性。
+相反，归并排序是一种稳定排序算法，因为在归并排序中，只涉及到元素的比较操作，不涉及到元素的交换操作，因此相等元素的相对位置不会发生变化，保持了稳定性。
+总的来说，稳定排序算法对于某些应用非常重要，例如需要按照多个关键字进行排序的场合。在这种情况下，如果使用不稳定排序算法进行排序，可能会导致结果不正确。因此，在选择排序算法时，需要根据具体应用场景和要求来选择不同的排序算法。
 
 '''
 import random
@@ -36,24 +47,24 @@ class Solution:  #快排序
         # 如果 start 大于等于 end，说明数组已经排好序，返回
         if start >= end:
             return
-        
+        # 下边是前序位置
         # 随机生成枢纽元素的下标
-        povit_index = random.randint(start, end)
+        pivot_index = random.randint(start, end)
         
         # 将枢纽元素和数组末尾元素交换位置
-        nums[povit_index], nums[end] = nums[end], nums[povit_index]
+        nums[pivot_index], nums[end] = nums[end], nums[pivot_index]
         # 将枢纽元素设为数组末尾元素的值
-        povit = nums[end]
+        pivot = nums[end]
 
         # 定义两个指针 i 和 j，分别指向数组开头和结尾的元素
         i, j = start, end - 1
         # 当 i 小于等于 j 时进行循环
         while i <= j:
             # 在 i 小于等于 j 且 nums[i] 小于枢纽元素时，i 向右移动
-            while i <= j and nums[i] < povit:
+            while i <= j and nums[i] < pivot:
                 i += 1
             # 在 i 小于等于 j 且 nums[j] 大于枢纽元素时，j 向左移动
-            while i <= j and nums[j] > povit:
+            while i <= j and nums[j] > pivot:
                 j -= 1
             # 如果 i 小于等于 j，则将 nums[i] 和 nums[j] 交换位置
             if i <= j:
@@ -63,6 +74,7 @@ class Solution:  #快排序
                 
         # 最后将枢纽元素放到正确的位置，将数组分为两半分别递归快排
         nums[i], nums[end] = nums[end], nums[i]
+        # 上边是前序位置
         self.quick_sort(nums, start, i - 1)
         self.quick_sort(nums, i + 1, end)
     
