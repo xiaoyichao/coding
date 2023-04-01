@@ -31,9 +31,11 @@ class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         if len(nums)<=1:
             return nums
+
         mid = len(nums)//2
-        left = self.sortArray(nums[mid:])
-        right = self.sortArray(nums[:mid])
+        # 递归和遍历函数是分开在两个函数的
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
         # 这一步相当于后序遍历
         return self.merge(left,right)
 
@@ -47,10 +49,16 @@ class Solution:
             else:
                 res.append(right[j])
                 j+=1
-        res = res+left[i:]
-        res = res+right[j:]
+        if i<len(left):
+            res.extend(left[i:])
+            # res = res+left[i:]
+        else:
+            res.extend(right[j:])
+            # res = res+right[j:]
         return res
 
+s = Solution()
+print(s.sortArray([5,2,3,1,2,47,90]))
 
 
         

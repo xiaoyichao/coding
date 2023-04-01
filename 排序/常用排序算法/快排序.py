@@ -75,6 +75,7 @@ class Solution:  #快排序
         # 最后将枢纽元素放到正确的位置，将数组分为两半分别递归快排
         nums[i], nums[end] = nums[end], nums[i]
         # 上边是前序位置
+        # 递归和遍历的在同一个函数中
         self.quick_sort(nums, start, i - 1)
         self.quick_sort(nums, i + 1, end)
     
