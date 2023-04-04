@@ -75,6 +75,6 @@ class Solution: # DP + 迭代
       
     
 s = Solution()
-res = s.minDistance("horse", "ros")
+res = s.minDistance("abc", "ab")
 print(res)
 
