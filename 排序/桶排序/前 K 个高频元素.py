@@ -6,7 +6,7 @@ LastEditors: xiaoyichao
 Date: 2022-11-14 17:34:52
 LastEditTime: 2022-11-14 17:41:20
 Description: 
-https://leetcode.cn/problems/top-k-frequent-elements/submissions/
+https://leetcode.cn/problems/top-k-frequent-elements/description/
 '''
 
 from typing import List
