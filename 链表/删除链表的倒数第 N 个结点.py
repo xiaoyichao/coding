@@ -17,6 +17,23 @@ class ListNode:
         self.val = val
         self.next = next
 
+
+    
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)  # 创建虚拟头结点
+        dummy.next = head  # 将虚拟头结点指向原链表的头结点
+        fast = slow = dummy  # 创建两个指针fast和slow，并且初始值均为虚拟头结点
+        for i in range(n):  # fast指针先走n步
+            fast = fast.next
+        while fast.next:  # 当fast指针走到链表末尾时，slow指针指向待删除节点的前一个节点
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next  # 将待删除节点的前一个节点的next指向待删除节点的后一个节点，即跳过待删除节点
+        return dummy.next  # 返回虚拟头结点的next指针，即为新的链表的头结点
+
+
+
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         p1 = head
@@ -34,17 +51,4 @@ class Solution:
 
         return head
     
-    
-class Solution:
-    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        dummy = ListNode(0)
-        dummy.next = head
-        fast = slow = dummy
-        for i in range(n):
-            fast = fast.next
-        while fast.next:
-            fast = fast.next
-            slow = slow.next
-        slow.next = slow.next.next
-        return dummy.next
 

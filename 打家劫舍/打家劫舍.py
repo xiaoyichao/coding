@@ -41,17 +41,17 @@ class Solution:
     
     def rob(self, nums: List[int]) -> int:
     # 能用迭代不要用递归，递归真的太慢了，慢到超乎你的想象
-        n = len(nums)
-        dp = [0] * (n + 2)
-        # dp 数组的长度为 n+2，而不是 n，是因为 dp 数组的前两个元素表示的是从 i=n 开始向后计算时所需要用到的两个初始值，
-        # 即 dp[n] = 0 和 dp[n+1] = 0。这两个初始值是因为在状态转移方程中，dp[i] 的计算需要用到 dp[i+1] 和 dp[i+2] 的值，
-        # 而当 i=n 时，dp[n+1] 和 dp[n+2] 的值均为 0。因此，将 dp 数组的长度设置为 n+2 可以避免数组下标越界，并且能够使代码更加简洁易懂。
-        for i in range(n-1,-1,-1): #因为选择公式中有nums[i]，所以i的迭代范围是[n-1, 0]的闭区间
-        # dp[i] 依赖于 dp[i+1] 和 dp[i+2]，所以要从后往前计算 dp 数组的值。
-        # 另外，如果从前往后循环，每次需要计算 dp[i] 时，需要等到 dp[i+1] 和 dp[i+2] 的值都已经计算完毕，这样会增加计算的时间复杂度，
-        # 因此从后往前循环可以减少计算的次数，提高算法的效率。
-            dp[i] = max(dp[i+1], nums[i]+dp[i+2])
-        return dp[0]
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        dp = [0] * len(nums)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i-2]+nums[i], dp[i-1])
+        return dp[-1]
+
     
     def rob(self, nums: List[int]) -> int:
         n = len(nums)

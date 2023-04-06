@@ -15,10 +15,10 @@ class Solution:
                 return True
            
             if root.val<=min_val:
-                    return False
+                return False
             
             if root.val>=max_val:
-                    return False
+                return False
 
             left = dfs(root.left, min_val, root.val)
             right = dfs(root.right, root.val, max_val)

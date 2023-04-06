@@ -19,21 +19,6 @@ class ListNode:
         self.next = None
 
 class Solution:
-    # 递归
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        if l1 is None:
-            return l2
-        elif l2 is None:
-            return l1
-        elif l1.val < l2.val:
-            l1.next = self.mergeTwoLists(l1.next, l2)
-            return l1
-        else:
-            l2.next = self.mergeTwoLists(l1, l2.next)
-            return l2
-
-
-class Solution:
     # 迭代，本质是使用了双指针+单指针
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         prehead = ListNode(-1) #将头节点的val置为-1，当然也可以置为其他数 
@@ -52,4 +37,21 @@ class Solution:
         else:
             prev.next = list2
         return prehead.next # 不要头节点
+
+
+
+class Solution:
+    # 递归
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if l1 is None:
+            return l2
+        elif l2 is None:
+            return l1
+        elif l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
+
 
