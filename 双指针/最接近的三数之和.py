@@ -8,16 +8,17 @@ class Solution:
         
         for i in range(len(nums)):
             l, r = i+1, n-1
-            while l<=r:
+            while l < r:
                 sum = nums[i]+nums[l]+nums[r]
-                if sum-target == 0:
+                if abs(sum-target) == 0:
                     return target
-                elif sum-target<0:
+                elif sum < target:
                     l+=1
-                    if abs(sum-target)<abs(diff):
-                        diff= sum-target
+                    if abs(sum-target) < abs(diff):
+                        diff = sum-target
                 else:
                     r-=1
-                    if abs(sum-target)<abs(diff):
-                        diff= sum-target
+                    if abs(sum-target) < abs(diff):
+                        diff = sum-target
         return diff+target
+
