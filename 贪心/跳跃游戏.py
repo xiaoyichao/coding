@@ -8,7 +8,7 @@ class Solution:
         n = len(nums)
         max_reach = 0
         for i in range(n):
-            if i > max_reach:
+            if max_reach < i:
                 return False
             max_reach = max(max_reach, i + nums[i])
         return max_reach >= n - 1
