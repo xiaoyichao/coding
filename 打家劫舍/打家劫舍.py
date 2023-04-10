@@ -52,19 +52,20 @@ class Solution:
             dp[i] = max(dp[i-2]+nums[i], dp[i-1])
         return dp[-1]
 
-    
+
+class Solution:
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
-        dp_i_1 = 0
-        dp_i_2 = 0
-        dp_i = 0
-        for i in range(n-1,-1,-1):
-        # 遍历顺序是倒序的原因是，当前的dp_i的值取决于下一次循环中的dp_i_1和dp_i_2的值，分别是下一个和下下个循环中的值。通过倒序遍历，可以为每个循环计算出正确的dp_i_1和dp_i_2的值。
-        # 如果我们从0到n-1循环，我们就需要使用先前循环中的dp_i_1和dp_i_2的值，而这些值在当前循环中还没有正确地更新，因此会导致错误的结果。
-            dp_i = max(dp_i_1, nums[i]+dp_i_2)
-            dp_i_2 = dp_i_1
-            dp_i_1 = dp_i
-        return dp_i
+        if n == 1:
+            return nums[0]
+        else:
+            dp = [0] * n
+            dp[0] = nums[0]
+            dp[1] = max(nums[0], nums[1])
+            for i in range(2, n):
+                dp[i] = max(dp[i-1], dp[i-2]+nums[i])
+            return dp[n-1]
+
     
 
 s = Solution()
