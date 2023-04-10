@@ -29,10 +29,16 @@ class Solution:
         a = 1
         b = 1
         for i in range(2, n+1):
-            # tmp = a
-            # a = b
-            # b = tmp+b
+            # tmp = b
+            # b = a+b
+            # a = tmp
+
             a, b = b, a + b
+            # 这两个写法都可以，但是不能用这个，因为b的值会被覆盖
+            # b = a+b
+            # a = b
+            
+            
         return b
 
 

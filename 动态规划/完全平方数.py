@@ -33,15 +33,19 @@ class Solution: #带备忘录的递归
 
 class Solution:
     def numSquares(self, n: int) -> int:
-        dp = [0]*(n+1)    
+        # 定义 dp 数组，其中 dp[i] 表示数字 i 最少可以由多少个完全平方数组成
+        dp = [0] * (n+1)
+
         for i in range(1, n+1):
-            dp[i] = i  # 最坏的结果就是全是1的平方构成，i等于几，就是几个完全平方数构成
-            max_range = int(math.sqrt(i))
-            for j in range(1,max_range+1):
-                max_dp = dp[i]
-                tmp_dp = dp[i-j*j]
-                dp[i] = min(max_dp, tmp_dp + 1)  # 穷举 1 到 int(math.sqrt(i)) 的情况 ，有点递归的意思，通过记忆化等方法弄掉重复计算
-        return dp[-1]
+            # 先将 dp[i] 设为 i，即全部用 1^2 组成
+            dp[i] = i
+
+            # 遍历所有小于 i 的完全平方数 j^2，将 dp[i-j^2] 的值加上 1 的结果与 dp[i] 进行比较，取较小值即可
+            for j in range(1, int(i**0.5)+1):
+                dp[i] = min(dp[i], dp[i-j*j]+1)
+
+        return dp[n]
+
 s = Solution()
-res = s.numSquares(12)
+res = s.numSquares(4)
 print(res)
