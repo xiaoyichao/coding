@@ -61,7 +61,7 @@ class Solution: # DP + 迭代
         
         for i in range(1, m + 1):
             for j in range(1, n + 1):
-                if word1[i - 1] == word2[j - 1]:
+                if word1[i - 1] == word2[j - 1]: #因为DP数组有多一个的初始化的维度，所以这个位置要i，j减一
                     dp[i][j] = dp[i - 1][j - 1]
                 else:
                     dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
