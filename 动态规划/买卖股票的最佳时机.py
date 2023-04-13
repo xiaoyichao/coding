@@ -10,14 +10,14 @@
 解法：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/solution/gu-piao-wen-ti-python3-c-by-z1m'''
 
 from typing import List
-class Solution:
 
-    # 这是自底向上的迭代方式的动态规划，保留所有DP
+class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
+        # 初始化DP数组，dp[i][0]表示第i天结束时，不持有股票的最大利润，dp[i][1]表示第i天结束时，持有股票的最大利润
         dp = [[0] * 2 for _ in range(n)]
         for i in range(n):
-            if i-1==-1: #base case 第一天的状态
+            if i - 1 == -1:  # base case，第一天的状态
                 dp[i][0] = 0
                 dp[i][1] = -prices[i]
             else:
@@ -27,6 +27,7 @@ class Solution:
                 dp[i][1] = max(dp[i-1][1], -prices[i])
         # 最后一天手里肯定是没持有股票的情况比持有的情况更赚钱。   
         return dp[-1][0]
+
 
     # 不需要用整个 dp 数组，只需要一个变量储存相邻的那个状态就足够了
     def maxProfit(self, prices: List[int]) -> int:
