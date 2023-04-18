@@ -1,11 +1,11 @@
 "https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/"
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
     # 1、将 root 的左子树和右子树拉平。
     # 2、将 root 的右子树接到左子树下方，然后将整个左子树作为右子树。
