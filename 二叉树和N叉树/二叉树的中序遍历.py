@@ -15,11 +15,9 @@ class Solution:
         def dfs(head):
             if not head:
                 return
-            # if head.left: 
-            dfs(head.left)
-            res.append(head.val)
-            # if head.right: 
-            dfs(head.right)
+            dfs(head.left) #递归左子树
+            res.append(head.val) # 添加当前节点的val 到res
+            dfs(head.right) # 递归右子树
 
         dfs(head)
         return res
