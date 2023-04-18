@@ -6,7 +6,7 @@ LastEditors: xiaoyichao
 Date: 2022-12-19 13:43:28
 LastEditTime: 2023-01-09 14:14:12
 Description: 
-https://leetcode.cn/problems/diameter-of-binary-tree/solution/
+https://leetcode.cn/problems/diameter-of-binary-tree/
 
 '''
 
@@ -19,20 +19,50 @@ class TreeNode:
         self.right = right
 
 
-class Solution:  # 求二叉树的直径
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        self.ans = 1
-
-        def dfs(root):
-            if not root:  # 访问到空节点返回0
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.diameter = 0  # 初始化直径长度为0
+        
+        def depth(node: TreeNode) -> int:
+            if not node:  # 如果节点为空，则深度为0
                 return 0
+            
+            left_depth = depth(node.left)  # 递归计算左子树深度
+            right_depth = depth(node.right)  # 递归计算右子树深度
+            
+            # 更新直径长度
+            self.diameter = max(self.diameter, left_depth + right_depth)
+            
+            # 返回以当前节点为根的子树深度
+            return max(left_depth, right_depth) + 1
+        
+        depth(root)  # 从根节点开始递归计算深度
+        
+        return self.diameter
 
-            left = dfs(root.left)  # 左儿子树的深度
-            right = dfs(root.right)  # 右儿子树的深度
-            #  后序位置，顺便计算最大直径
-            self.ans = max(self.ans, left+right+1) # 计算d_node即L+R+1 并更新ans
 
-            return max(left, right) + 1  # 返回该节点为根的子树的深度
 
-        dfs(root)
-        return self.ans - 1  # self.ans 是节点个数，不是路径长度
+
+
+class Solution:
+    '''
+    定义一个递归函数 dfs(node)，该函数返回一个二元组 (a, b)，其中 a 表示以 node 为根结点的子树的最大深度，b 表示以 node 为根结点的子树的直径长度。
+
+    在递归过程中，对于每个结点 node，先递归计算其左子树和右子树的最大深度和直径长度，分别记为 (al, bl) 和 (ar, br)。
+
+    计算以 node 为根结点的子树的最大深度 a = max(al, ar) + 1，以及直径长度 b = max(al + ar, bl, br)。其中，直径长度的计算分为三种情况：穿过 node、在左子树中、在右子树中。
+
+    递归结束后，根据根结点的直径长度返回结果。'''
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        def dfs(node):
+            if not node:
+                return 0, 0
+            al, bl = dfs(node.left)
+            ar, br = dfs(node.right)
+            a = max(al, ar) + 1
+            b = max(al + ar, bl, br)
+            return a, b
+        
+        return dfs(root)[1]
+
+
