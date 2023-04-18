@@ -1,12 +1,14 @@
 "https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/?favorite=2cktkvj"
 
-
+from typing import List
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         # 构造哈希映射，帮助我们快速定位根节点
@@ -15,6 +17,7 @@ class Solution:
         # 递归函数
         def helper(preorder_left, preorder_right, inorder_left, inorder_right):
             # 若先序遍历和中序遍历范围为空，则退出递归
+            # 在递归构建子树的过程中，我们需要不断缩小先序遍历和中序遍历的范围。当某一时刻先序遍历或中序遍历的范围为空时，说明当前子树已经构建完毕，这时候应该返回 None，退出当前递归
             if preorder_left > preorder_right or inorder_left > inorder_right:
                 return None
             
