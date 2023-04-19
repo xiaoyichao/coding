@@ -1,18 +1,47 @@
 "https://leetcode.cn/problems/reverse-linked-list-ii/description/"
 
+from typing import Optional
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
+
+
+class Solution:
+
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        # 创建一个虚拟头结点，方便处理特殊情况
+        dummy = ListNode(0)
+        dummy.next = head
+
+        # 定位到 left-1 个节点
+        pre = dummy
+        for i in range(left-1):
+            pre = pre.next
+
+        # 定位到第 left 个节点
+        cur = pre.next
+
+        # 逐个插入节点
+        for i in range(left, right):
+            # 获取下一个节点
+            tmp = cur.next
+            # 将下一个节点插入到 pre 和 cur 之间
+            cur.next = tmp.next
+            tmp.next = pre.next
+            pre.next = tmp
+
+        # 返回翻转后的链表
+        return dummy.next
+
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
 
         if not head:
             return None
-        
+
         # 定义虚拟头结点，防止left为1时需要特殊处理
         dummy = ListNode(0)
         dummy.next = head
@@ -21,9 +50,9 @@ class Solution:
         p_left = head
         p_left_pre = dummy
         for i in range(1, left):
-            p_left_pre = p_left
+            p_left_pre = p_left_pre.next
             p_left = p_left.next
-        
+
         # 将left前一个节点与left节点分开
         p_left_pre.next = None
 
@@ -45,34 +74,7 @@ class Solution:
 
 
 
-def reverseBetween(head: ListNode, left: int, right: int) -> ListNode:
-    # 创建一个虚拟头结点，方便处理特殊情况
-    dummy = ListNode(0)
-    dummy.next = head
 
-    # 定位到 left-1 个节点
-    pre = dummy
-    for i in range(left-1):
-        pre = pre.next
-
-    # 定位到第 left 个节点
-    cur = pre.next
-
-    # 逐个插入节点
-    for i in range(left, right):
-        # 获取下一个节点
-        tmp = cur.next
-        # 将下一个节点插入到 pre 和 cur 之间
-        cur.next = tmp.next
-        tmp.next = pre.next
-        pre.next = tmp
-
-    # 返回翻转后的链表
-    return dummy.next
-
-
-# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-# 本代码已经通过力扣的测试用例，应该可直接成功提交。
 
 class Solution:
     def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:

@@ -7,7 +7,7 @@ Date: 2022-08-15 22:04:22
 LastEditTime: 2022-08-15 22:04:23
 Description: 
 
-https://leetcode.cn/problems/sort-an-array/submissions/
+https://leetcode.cn/problems/sort-an-array/
 一句话总结就是，归并排序就是先把左半边数组排好序，再把右半边数组排好序，然后把两半数组合并。
 
 具体来说，归并排序的过程可以分为两个步骤：分割和归并。
