@@ -6,7 +6,7 @@ Date: 2022-08-15 22:03:53
 LastEditTime: 2022-12-13 13:57:36
 Description:
 
-https://leetcode.cn/problems/sort-an-array/submissions/
+https://leetcode.cn/problems/sort-an-array
 
 一句话总结：快速排序是先将一个元素排好序（左边不比这个元素大，右边比这个元素大），然后再将剩下的元素排好序。
 快速排序算法其实很简单，采用分治策略。步骤如下：
