@@ -49,12 +49,8 @@ class Solution:
             else:
                 res.append(right[j])
                 j+=1
-        if i<len(left):
-            res.extend(left[i:])
-            # res = res+left[i:]
-        else:
-            res.extend(right[j:])
-            # res = res+right[j:]
+        res = res+left[i:]
+        res = res+right[j:]
         return res
 
 s = Solution()
