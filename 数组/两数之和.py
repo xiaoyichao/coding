@@ -1,25 +1,19 @@
 # coding=UTF-8
 '''
-Author: 
-LastEditors: Please set LastEditors
-Date: 2022-03-08 21:29:49
-LastEditTime: 2022-03-08 21:48:29
-Description: 
+https://leetcode.cn/problems/two-sum/
 '''
 class Solution:
-    def twoSum(self, nums, target):
-        i = 0
-        j = len(nums) - 1
-        while i < j:
-            if i< j:
-                if nums[i] + nums[j] == target:
-                    return [i, j]
-                elif nums[i] + nums[j] < target:
-                    i+=1
-                else:
-                    j-=1
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_dict= {}
+        for i in range(len(nums)):
+            c = target-nums[i]
+            if c in num_dict:
+                return [i, num_dict[c]]
             else:
-                return
+                num_dict[nums[i]] = i
+        return []
+
+
                 
                     
             
