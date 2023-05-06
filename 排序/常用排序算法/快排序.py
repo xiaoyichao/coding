@@ -38,28 +38,32 @@ from typing import List
 import random
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        self.quick_sort(nums, 0, len(nums)-1)
+        self.quicke_sort(nums, 0, len(nums)-1)
         return nums
-    def quick_sort(self, nums, start, end):
+    
+    def quicke_sort(self, nums, start, end):
         if start>=end:
             return
-
-        pivot = random.randint(start, end)
-        nums[end], nums[pivot] = nums[pivot], nums[end]
-        pivot_num = nums[end]
-        i, j = start, end-1
+        pivot_index = random.randint(start,end)
+        nums[pivot_index], nums[end] = nums[end], nums[pivot_index]
+        pivot = nums[end]
+        i,j = start, end-1
         while i<=j:
-            while i<=j and nums[i]<pivot_num:
+            while i<=j and nums[i]<pivot:
                 i+=1
-            while i<=j and nums[j]>pivot_num:
+            while i<=j and nums[j]>pivot:
                 j-=1
-            if i<j:
+            if i<=j:
                 nums[i], nums[j] = nums[j], nums[i]
                 i+=1
                 j-=1
         nums[i], nums[end] = nums[end], nums[i]
-        self.quick_sort(nums, start, i-1)
-        self.quick_sort(nums, i+1, end)
+        self.quicke_sort(nums, start, i-1)
+        self.quicke_sort(nums, i+1, end)
+
+
+
+
     
 class Solution: # 这个好记，但是会使用额外的存储
     def sortArray(self, nums: List[int]) -> List[int]:
