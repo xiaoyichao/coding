@@ -20,25 +20,21 @@ class Solution:
             _sum = nums[lo] + nums[hi]
             left, right = nums[lo], nums[hi]
             if _sum < target:
-                # while lo < hi and nums[lo] == nums[lo + 1]: # 跳过相同的元素
-                #     lo += 1
-                # lo += 1  # 本身的迭代
 
-                # 这种写法也可以，但是有点晦涩
                 while lo < hi and nums[lo] == left:
                     lo += 1
             elif _sum > target:
                 while lo < hi and nums[hi] == right:
                     hi -= 1
-                # hi -= 1
-            else: # _sum == target
+
+            else:  # _sum == target
                 res.append([nums[lo], nums[hi]])
-                while lo < hi and nums[lo] == left: # 跳过相同的元素
+                while lo < hi and nums[lo] == left:  # 跳过相同的元素
                     lo += 1
-                # lo += 1 # 本身的迭代
+
                 while lo < hi and nums[hi] == right:
                     hi -= 1
-                # hi -= 1
+
         return res
 
 
