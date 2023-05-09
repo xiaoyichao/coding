@@ -10,48 +10,73 @@ Description: https://leetcode.cn/problems/permutations/
 '''
 from typing import List    
 
-
-
-#labuladong的解法精简后
 class Solution:
-    def permute(self, nums):  
-        res = []
-        def backtrack(nums, track):
-            if not nums:
-            # if len(nums)==0:
-                res.append(track.copy())
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res= []
+        truck = []
+        used = [False]*len(nums)
+        def backtrack(nums, track, used):
+            if len(nums) == len(track):
+                res.append(track[:])
+            
             for i in range(len(nums)):
+                if used[i]:
+                    continue
                 track.append(nums[i])
-                backtrack(nums[:i]+nums[i+1:],track)
+                used[i] = True
+                backtrack(nums, track, used)
                 track.pop()
-        backtrack(nums, [])
-        return res
-
-
-s = Solution()
-res = s.permute([1,2,3])
-print(res)
+                used[i] = False
+        
+        backtrack(nums, [], used)  
+        return res  
+    
 
 #labuladong的解法
+# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
+# 本代码已经通过力扣的测试用例，应该可直接成功提交。
+
 class Solution:
-    def permute(self, nums):   
-        res = [] # 结果
+    def __init__(self):
+        self.res = []
+
+    # 主函数，输入一组不重复的数字，返回它们的全排列 
+    def permute(self, nums: List[int]) -> List[List[int]]:
+
+        # 记录「路径」
+        track = []
+        # 「路径」中的元素会被标记为 true，避免重复使用
+        used = [False] * len(nums)
         
-        def backtrack(nums, track, used):
-            # track 【选择列表】，表示当前可以做的选择
-            # used【路径】，记录做过的选择
-            if  len(nums)==0:  # 触发结束条件， 【结束条件】就是遍历到树的底层叶子节点，也就是【选择列表】为空的时候
-                res.append(used)
-            for i in range(len(nums)):
-                # 做选择
-                track.append(nums[i]) #track 在这个题目里实际上没啥作用
-                # 进入下一层决策树
-                backtrack(nums[:i] + nums[i + 1:], track, used + [nums[i]]) #其实就是把nums[i] 从nums 中移出到used中，track也同步记录nums[i]
-                # 取消选择
-                track.pop() # 返回上一层决策树
-        
-        backtrack(nums, [], [])
-        return res
+        self.backtrack(nums, track, used)
+        return self.res
+
+    # 路径：记录在 track 中
+    # 选择列表：nums 中不存在于 track 的那些元素（used[i] 为 false）
+    # 结束条件：nums 中的元素全都在 track 中出现
+    def backtrack(self, nums: List[int], track: List[int], used: List[bool]) -> None:
+
+        # 触发结束条件
+        if len(track) == len(nums):
+            self.res.append(track[:])
+            return
+
+        for i in range(len(nums)):
+            # 排除不合法的选择
+            if used[i]:
+                # nums[i] 已经在 track 中，跳过
+                continue
+            # 做选择
+            track.append(nums[i])
+            used[i] = True
+            # 进入下一层决策树
+            self.backtrack(nums, track, used)
+            # 取消选择
+            track.pop()
+            used[i] = False
+# 详细解析参见：
+# https://labuladong.github.io/article/?qno=46
+
 
 # 官方解法
 class Solution:
