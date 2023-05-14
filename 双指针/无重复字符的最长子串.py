@@ -13,6 +13,26 @@ Description: https://leetcode.cn/problems/longest-substring-without-repeating-ch
 
 '''
 
+# labuladong 的解法
+from collections import defaultdict
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        window = defaultdict(int)
+        l = 0 
+        r = 0
+        count = 0
+
+        while r<len(s):
+            c = s[r]
+            r+=1
+            window[c] +=1
+                
+            while window[c] >1 :
+                d = s[l]
+                l+=1
+                window[d] -=1
+            count = max(count,r-l)  # 这个位置不能写count = max(count,len(window)) 因为进入过window的数据，即使value =0 但是key也存在
+        return count
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -50,26 +70,6 @@ class Solution:
         return res
     
 
-# labuladong 的解法
-from collections import defaultdict
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        window = defaultdict(int)
-        l = 0 
-        r = 0
-        count = 0
-
-        while r<len(s):
-            c = s[r]
-            r+=1
-            window[c] +=1
-                
-            while window[c] >1 :
-                d = s[l]
-                l+=1
-                window[d] -=1
-            count = max(count,r-l)  # 这个位置不能写count = max(count,len(window)) 因为进入过window的数据，即使value =0 但是key也存在
-        return count
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
