@@ -38,28 +38,30 @@ from typing import List
 import random
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        self.quicke_sort(nums, 0, len(nums)-1)
+        self.quick_sort(nums, 0, len(nums)-1)
         return nums
     
-    def quicke_sort(self, nums, start, end):
+    def quick_sort(self, nums, start, end):
         if start>=end:
             return
-        pivot_index = random.randint(start,end)
-        nums[pivot_index], nums[end] = nums[end], nums[pivot_index]
+        pivot_index = random.randint(start, end)
+        nums[pivot_index],nums[end] = nums[end], nums[pivot_index]
         pivot = nums[end]
-        i,j = start, end-1
+
+        i, j = start, end-1
         while i<=j:
             while i<=j and nums[i]<pivot:
                 i+=1
             while i<=j and nums[j]>pivot:
                 j-=1
             if i<=j:
-                nums[i], nums[j] = nums[j], nums[i]
+                nums[i] ,nums[j]= nums[j], nums[i]
                 i+=1
                 j-=1
-        nums[i], nums[end] = nums[end], nums[i]
-        self.quicke_sort(nums, start, i-1)
-        self.quicke_sort(nums, i+1, end)
+            nums[i], nums[end] = nums[end], nums[i]
+            self.quick_sort(nums, start, i-1)
+            self.quick_sort(nums, i+1, end )
+
 
 
 
