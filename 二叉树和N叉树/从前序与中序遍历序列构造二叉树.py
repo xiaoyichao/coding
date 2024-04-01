@@ -53,6 +53,20 @@ class Solution:
                           inorder, 0, len(inorder) - 1, valToIndex)
 
     def build(self, preorder, pre_start, pre_end, inorder, in_start, in_end, valToIndex):
+        """本质上是前序遍历，因为那一大坨代码放在了前序遍历的位置
+
+        Args:
+            preorder ([type]): [description]
+            pre_start ([type]): [description]
+            pre_end ([type]): [description]
+            inorder ([type]): [description]
+            in_start ([type]): [description]
+            in_end ([type]): [description]
+            valToIndex ([type]): [description]
+
+        Returns:
+            [type]: [description]
+        """        
         if pre_start > pre_end:
             return None
 
