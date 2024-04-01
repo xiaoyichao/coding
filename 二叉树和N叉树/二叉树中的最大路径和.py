@@ -14,6 +14,14 @@ class Solution:
         return self.max_sum
 
     def helper(self, node: TreeNode) -> int:
+        """本质上是个后续遍历
+
+        Args:
+            node (TreeNode): [description]
+
+        Returns:
+            int: [description]
+        """        
         if not node:
             return 0
         
