@@ -12,16 +12,18 @@ from collections import defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         need = defaultdict(int)
+        # 记录分别每个字母需要几次
         for i in t:
             need[i] = need[i]+1
+
         window = defaultdict(int)  
         l = 0
         r = 0 
         valid = 0 #用来记录need中需要的，是否windows中都满足了
         start = -1
         min_len = float('inf')
+        # 右指针一直往后移动，直到满足需求，说明找到了一个解
         while r < len(s) :
-            
             # 窗口字典的数据更新
             c = s[r]
             r+=1
@@ -29,7 +31,7 @@ class Solution:
                 window[c] += 1
                 if window[c] == need[c]: # 判断某个字母所需要的数字是否在窗口中是否已经满足
                     valid+=1
-            
+            # 左指针往右移动，看是否能优化这个解答
             while (valid == len(need)): # need中需要的，windows中都满足了
                 # print("满足数据", s[l:r+1]) # 字符串是左闭右开，所以需要右边+1才能取到
                 # 更新最小子串的记录，也就是找到了更短的子串
@@ -49,7 +51,7 @@ class Solution:
 
 
 # 下边这个是for循环写的，尽量别看
-class Solution:
+class Solution2:
     def minWindow(self, s: str, t: str) -> str:
         need = defaultdict(int)
         for i in t:

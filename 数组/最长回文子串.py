@@ -6,6 +6,26 @@ Date: 2023-01-04 22:59:05
 LastEditTime: 2023-01-04 23:30:13
 Description: https://leetcode.cn/problems/longest-palindromic-substring/
 '''
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ""
+        for i in range(len(s)):
+            s1 = self.palindrome(s,i,i)
+            s2 = self.palindrome(s,i,i+1)
+            if len(s1)>len(res):
+                res=s1
+            if len(s2)>len(res):
+                res=s2
+        return res
+
+    def palindrome(self, s, l, r):
+        while l>=0 and r<=len(s)-1 and s[l]==s[r]:
+            l-=1
+            r+=1
+        # 左闭右开，这个位置是判断符合条件就直接加一，但是加一后未必符合
+        return s[l+1:r] 
+
 class Solution:
     def longestPalindrome(self, s: str) -> str: # 双指针的方式，中心扩展法
         n = len(s)
