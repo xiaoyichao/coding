@@ -9,9 +9,9 @@
 
 class Solution:
     def numTrees(self, n: int) -> int:
-        # 处理特殊情况，当 n 为 0 或 1 时，只有一种情况
-        if n == 0 or n == 1:
-            return 1
+        # # 处理特殊情况，当 n 为 0 或 1 时，只有一种情况,其实不用
+        # if n == 0 or n == 1:
+        #     return 1
         # 初始化动态规划数组，dp[i] 表示由 i 个节点组成的二叉搜索树的个数
         dp = [0] * (n+1)
         dp[0], dp[1] = 1, 1  # 当只有 0 个或 1 个节点时，只有一种情况
@@ -21,7 +21,7 @@ class Solution:
                 # 将 j 作为根节点，左子树有 j-1 个节点，右子树有 i-j 个节点，
                 # 则以 j 为根节点的二叉搜索树个数为 dp[j-1] * dp[i-j]
                 dp[i] += dp[j-1] * dp[i-j]
-        return dp[n]  # 返回由 n 个节点组成的二叉搜索树的个数
+        return dp[-1]  # 返回由 n 个节点组成的二叉搜索树的个数
     
 
 class Solution:

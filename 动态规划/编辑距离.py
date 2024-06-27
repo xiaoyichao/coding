@@ -56,6 +56,7 @@ class Solution: # DP + 迭代
     def minDistance(self, word1: str, word2: str) -> int:
         m, n = len(word1), len(word2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
+        # dp = [[0] * (n + 1)] * (m + 1) 会导致数组中所有行都是对同一个列表对象的引用，这会导致在修改其中一个元素时，所有行都会被修改。
         
         for i in range(m + 1):
             dp[i][0] = i
