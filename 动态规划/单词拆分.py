@@ -16,8 +16,9 @@ class Solution:
         for i in range(len(s)):
             # 遍历从0到i的子串
             for j in range(i+1):
-                # 如果dp[j]为True，表示0到j-1的子串可以被分割成字典中的单词
-                # 并且[j:i+1]这个子串在字典中出现过
+                # •	外循环遍历字符串 s 的每个字符。
+	            # •	内循环遍历从 0 到 i 的所有子串。
+                # 如果 dp[j] 为 True（表示 s 的前 j 个字符可以被分割），且 s[j:i+1] 存在于 word_set 中，那么 dp[i+1] 更新为 True，并跳出内循环。
                 if dp[j] and s[j:i+1] in word_set:
                     # 更新dp数组
                     dp[i+1] = True
