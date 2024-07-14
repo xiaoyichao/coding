@@ -4,25 +4,27 @@ class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
         version1 = version1.split(".")
         version2 = version2.split(".")
-
-        i, j = 0, 0
+        i = 0
+        j = 0
         while i<len(version1) or j<len(version2):
             if i<len(version1):
-                v1 = int(version1[i].lstrip("0")) if version1[i].lstrip("0")!="" else 0
+                v1 = int(version1[i])
             else:
-                v1 = 0
-            if  j<len(version2):
-                v2 = int(version2[j].lstrip("0")) if version2[j].lstrip("0")!="" else 0
+                v1=0
+            if j<len(version2):
+                v2 = int(version2[i])
             else:
-                v2 = 0
-            if v1 > v2:
+                v2=0
+
+            if v1<v2:
+                return -1
+            elif v1>v2:
                 return 1
-            elif v1 == v2:
+            else:
                 i+=1
                 j+=1
-            else:
-                return -1
         return 0
+
 
 # GPT的做法
 class Solution:
