@@ -28,5 +28,22 @@ class Solution:
             res = max(left_max[i-1]+right_sum, res)
         return res
 
-        
+# 方法二：取反
+# https://leetcode.cn/problems/maximum-sum-circular-subarray/
 
+
+class Solution:
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        n = len(nums)
+        preMax, maxRes = nums[0], nums[0]
+        preMin, minRes = nums[0], nums[0]
+        sum_ = sum(nums)
+        for i in range(1, n):
+            preMax = max(preMax + nums[i], nums[i])
+            maxRes = max(maxRes, preMax)
+            preMin = min(preMin + nums[i], nums[i])
+            minRes = min(minRes, preMin)
+        if maxRes < 0: #说明数字中不包含大于等于0 的元素。minRes 将包括数组中的所有元素，导致我们实际取到的子数组为空。在这种情况下，我们只能取 maxRes 作为答案。
+            return maxRes
+        else:
+            return max(maxRes, sum_ - minRes)
