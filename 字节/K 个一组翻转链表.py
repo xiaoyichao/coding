@@ -12,12 +12,12 @@ class Solution:
     # 翻转一个子链表，并且返回新的头与尾
     def reverse(self, head: ListNode, tail: ListNode):
         prev = tail.next
-        p = head
+        cur = head
         while prev != tail:
-            nex = p.next
-            p.next = prev
-            prev = p
-            p = nex
+            nex = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nex
         return tail, head
 
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
