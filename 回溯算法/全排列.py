@@ -67,7 +67,7 @@ class Solution:
                 # nums[i] 已经在 track 中，跳过
                 continue
             # 做选择
-            track.append(nums[i])
+            track.append(nums[i])t
             used[i] = True
             # 进入下一层决策树
             self.backtrack(nums, track, used)
