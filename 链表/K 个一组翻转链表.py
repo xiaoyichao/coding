@@ -1,10 +1,45 @@
 "https://leetcode.cn/problems/reverse-nodes-in-k-group/"
+from typing import Optional
 
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+class Solution:
+    # 迭代方式
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # 创建一个假的头节点，方便处理链表头的边界情况
+        dummy = ListNode(0)
+        dummy.next = head
+        # 初始化三个指针
+        pre = dummy
+        cur = head
+        nex = head
+
+        # 计算链表的长度
+        length = 0
+        while head:
+            length += 1
+            head = head.next
+
+        # 循环直到处理完整个链表
+        while length >= k:
+            cur = pre.next
+            nex = cur.next
+            # 逆转 k 个节点
+            for _ in range(1, k):
+                cur.next = nex.next
+                nex.next = pre.next
+                pre.next = nex
+                nex = cur.next
+            # 移动指针
+            pre = cur
+            length -= k
+
+        return dummy.next
+
 
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:

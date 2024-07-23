@@ -58,14 +58,13 @@ class Solution:
                 nums[i] ,nums[j]= nums[j], nums[i]
                 i+=1
                 j-=1
-            nums[i], nums[end] = nums[end], nums[i]
-            self.quick_sort(nums, start, i-1)
-            self.quick_sort(nums, i+1, end )
+        nums[i], nums[end] = nums[end], nums[i]
+        self.quick_sort(nums, start, i-1)
+        self.quick_sort(nums, i+1, end )
 
-
-
-
-
+s = Solution()
+res = s.sortArray([5,2,3,1])
+print(res)
     
 class Solution: # 这个好记，但是会使用额外的存储
     def sortArray(self, nums: List[int]) -> List[int]:
@@ -89,6 +88,4 @@ class Solution: # 这个好记，但是会使用额外的存储
 
 
 
-s = Solution()
-res = s.sortArray([5,2,3,1])
-print(res)
+
