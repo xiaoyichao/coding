@@ -34,7 +34,6 @@ import random
 from typing import List
 
 
-
 import random
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
@@ -62,27 +61,31 @@ class Solution:
         self.quick_sort(nums, start, i-1)
         self.quick_sort(nums, i+1, end )
 
+
+
+
+
 s = Solution()
 res = s.sortArray([5,2,3,1])
 print(res)
     
-class Solution: # 这个好记，但是会使用额外的存储
-    def sortArray(self, nums: List[int]) -> List[int]:
-        if len(nums)<=1:
-            return nums
-        else:
-            pivot = random.choice(nums)
-            left = []
-            right = []
-            mid = []
-            for num in nums:
-                if num < pivot:
-                    left.append(num)
-                elif num == pivot:
-                    mid.append(num)
-                else:
-                    right.append(num)
-            return self.sortArray(left) + mid + self.sortArray(right)
+# class Solution: # 这个好记，但是会使用额外的存储
+#     def sortArray(self, nums: List[int]) -> List[int]:
+#         if len(nums)<=1:
+#             return nums
+#         else:
+#             pivot = random.choice(nums)
+#             left = []
+#             right = []
+#             mid = []
+#             for num in nums:
+#                 if num < pivot:
+#                     left.append(num)
+#                 elif num == pivot:
+#                     mid.append(num)
+#                 else:
+#                     right.append(num)
+#             return self.sortArray(left) + mid + self.sortArray(right)
 
 
 

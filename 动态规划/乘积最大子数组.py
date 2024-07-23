@@ -35,6 +35,7 @@ class Solution:
         dp_max = nums[0]
         res = dp_max
         for i in range(1, n):
+            # 如果dp_min 在计算 dp_max 之前已经被更新了， dp_max 的计算使用了更新后的 dp_min 值，而不是原来的 dp_min 值。这样会导致错误的结果。
             prev_dp_min = dp_min
             dp_min = min(prev_dp_min * nums[i], dp_max * nums[i], nums[i])
             dp_max = max(prev_dp_min * nums[i], dp_max * nums[i], nums[i])

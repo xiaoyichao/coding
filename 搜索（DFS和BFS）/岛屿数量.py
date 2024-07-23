@@ -3,37 +3,32 @@
 from typing import List
 
 
-# 这个代码很精简啊
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        # 计算岛屿数量的函数
         def dfs(grid, i, j):
-            # 若行或列超出边界，或者遇到水，则返回0
-            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':
-                return 0
-
-            # 将访问过的陆地标记为0
+            # 如果越界或者当前格子是'0'，直接返回
+            if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == '0':
+                return
+            # 将访问过的岛屿部分标记为'0'
             grid[i][j] = '0'
-
-            # 继续递归搜索上下左右四个方向
+            # 继绺探索上下左右四个方向
             dfs(grid, i - 1, j)
             dfs(grid, i + 1, j)
             dfs(grid, i, j - 1)
             dfs(grid, i, j + 1)
 
-            return 1
-
-        # 初始化岛屿数量为0
-        num_of_islands = 0
-
-        # 遍历网格中的所有元素
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                # 如果当前元素是陆地，岛屿数量加1，并执行深度优先搜索
-                if grid[i][j] == '1':
-                    num_of_islands += dfs(grid, i, j)
-
-        return num_of_islands
+        m = len(grid)
+        n = len(grid[0])
+        res = 0
+        for i in range(m):
+            for j in range(n):
+                # 当找到一个岛屿的新开始时
+                if grid[i][j] == "1":
+                    # 增加岛屿数量
+                    res += 1
+                    # 进行深度优先搜索来标记整个岛屿
+                    dfs(grid, i, j)
+        return res
 
 
 
